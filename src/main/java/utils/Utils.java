@@ -22,8 +22,17 @@ public class Utils {
      * @param max
      * @return
      */
-    public static boolean comprobarRango(int valor, int min, int max){//ToDo
-        return true;
+    public boolean comprobarRango(int valor, int min, int max){//ToDo
+        boolean esValido = true;
+
+        do {
+            if (valor < min || valor > max) {
+                System.out.println("Error: No esta dentro del rango.");
+                esValido = false;
+            }
+
+        }while (!esValido);
+        return esValido;
     }
 
     /**
