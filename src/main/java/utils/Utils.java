@@ -1,56 +1,84 @@
 package utils;
 
-import model.Jugador;
-import model.MaquinaArcade;
-import model.SalaRecreativa;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 
 public class Utils {
 
     /**
-     * pide un número por consola y compueba si es un enetero
-     * @param mjs
-     * @return
+     * Pide un número por consola y comprueba si es un entero y devuelve un int
+     * @param mjs  mensaje que se mostrará al pedir el número
+     * @return int - numero validado
      */
-    public static int leerEnter(String mjs){//ToDo
-        return -1;
-    }
-
-    /**
-     * retorna booleano indicando si está dentro del rango
-     * @param valor
-     * @param min
-     * @param max
-     * @return
-     */
-    public boolean comprobarRango(int valor, int min, int max){//ToDo
+    public int leerEnter(String mjs){//ToDo - Uncheck
+        Scanner sc = new Scanner(System.in);
         boolean esValido = true;
+        int numero = 0;
 
         do {
-            if (valor < min || valor > max) {
-                System.out.println("Error: No esta dentro del rango.");
+            esValido = true;
+            System.out.print(mjs);
+
+            try {
+                numero = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: No es un numero entero.");
                 esValido = false;
+                sc.nextLine();
             }
 
-        }while (!esValido);
-        return esValido;
+        } while (!esValido);
+        return numero;
     }
 
     /**
-     * generar puntuaciones o créditos automáticos
-     * @param min
-     * @param max
-     * @return
+     * Se encarga de decir si un valor se encuentra dentro de un rango y devuelve un booleano
+     * @param valor numero a comprobar
+     * @param min valor mínimo permitido (incluido)
+     * @param max valor maximo permitido (incluido)
+     * @return boolean - validacion del rango
      */
-    public static int generarNumeroAleatorio(int min, int max){//ToDo
-        return -1;
+    public boolean comprobarRango(int valor, int min, int max){//ToDo - Uncheck
+         return valor >= min && valor <= max;
     }
 
     /**
-     * Generar una puntuación aleatoria entre 0 y 9999, e incrementar el
-     * contador de partidas.
+     * Solícita un número entero al usuario mediante leerEntero()
+     * y comprueba si se encuentra dentro de un rango médiente comprobarRango()
+     * Repetira la peticion hasta que se introduzca un número dentro del rango.
+     *      Nota: esto se podria meter en comprobar rango si devolviese un int en vez de un boolean
+     * @param mjs mensaje que se mostrará al pedir el número
+     * @param min valor mínimo permitido (incluido)
+     * @param max valor maximo permitido (incluido)
+     * @return int - numero entero dentro del rango
      */
-    public static void genPuntacion(){// ToDo
+    public int leerEnterEnRango(String mjs, int min, int max) {
+        boolean esValido;
+        int valor;
 
+        do {
+            valor = leerEnter(mjs);
+            esValido = comprobarRango(valor, min, max);
+
+            if (!esValido) System.out.println("Error: el valor debe estar entre " + min + " y " + max + ".");
+
+        } while (!esValido);
+
+        return valor;
     }
+
+    /**
+     * Genera numeros enteros automaticos dentro de un rango dado.
+     *  nota: <a href="https://es.stackoverflow.com/questions/5390/como-generar-n%C3%BAmeros-aleatorios-dentro-de-un-rango-de-valores">...</a>
+     * @param min valor mínimo permitido (incluido)
+     * @param max valor maximo permitido (incluido)
+     * @return int - numero aleatorio
+     */
+    public int generarNumeroAleatorio(int min, int max){//ToDo - Uncheck
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
 }
 
