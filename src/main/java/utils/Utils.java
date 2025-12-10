@@ -84,6 +84,13 @@ public class Utils {
         return Utils.leerEnterEnRango("Seleccione una opción: ", min, max);
     }
 
+    /**
+     * Metodo que comprueba que la palabra introducida por el usuario cumpla los requisitos de longitud y no se encuentre vacio.
+     * @param mjs mensaje para el usuario
+     * @param min minimo de letras
+     * @param max maximo de letras
+     * @return String - nombre validado
+     */
     public static String nombrar(String mjs, int min, int max){
         Scanner sc = new Scanner(System.in);
         boolean esValido = false;
