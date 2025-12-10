@@ -80,5 +80,29 @@ public class Utils {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
+    public static int opcionesUser(int min, int max){
+        return Utils.leerEnterEnRango("Seleccione una opción: ", min, max);
+    }
+
+    public static String nombrar(String mjs, int min, int max){
+        Scanner sc = new Scanner(System.in);
+        boolean esValido = false;
+        String name = "";
+
+        do {
+            System.out.print(mjs);
+            name = sc.nextLine().trim();
+
+            if (name.isEmpty()) System.out.println("Error: el nombre no puede estar vacío.");
+            else if (name.length() < min || name.length() > max) System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");
+            else esValido = true;
+
+        } while (esValido);
+
+        return name;
+    }
+
+
+
 }
 
