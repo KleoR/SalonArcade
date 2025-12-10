@@ -1,10 +1,15 @@
 package model;
 
+import utils.Utils;
+
 public class Jugador {
+    int h = Utils.leerEnter("");
+
+
     private String nameJugador;
     private String idJugador;
     private int creditosJugador;
-    private int numPartidasJagadas;
+    private int numPartidasJugadas;
 
     //------------------------------------------ GETTER/SETTER --------------------------------------------
 
@@ -12,7 +17,7 @@ public class Jugador {
         this.nameJugador = nameJugador;
         this.idJugador = idJugador;
         this.creditosJugador = creditosJugador;
-        this.numPartidasJagadas = numPartidasJagadas;
+        this.numPartidasJugadas = numPartidasJagadas;
     }
 
     public String getNameJugador() {
@@ -27,8 +32,8 @@ public class Jugador {
         return creditosJugador;
     }
 
-    public int getNumPartidasJagadas() {
-        return numPartidasJagadas;
+    public int getNumPartidasJugadas() {
+        return numPartidasJugadas;
     }
 
     public void setNameJugador(String nameJugador) {
@@ -43,8 +48,8 @@ public class Jugador {
         this.creditosJugador = creditosJugador;
     }
 
-    public void setNumPartidasJagadas(int numPartidasJagadas) {
-        this.numPartidasJagadas = numPartidasJagadas;
+    public void setNumPartidasJugadas(int numPartidasJugadas) {
+        this.numPartidasJugadas = numPartidasJugadas;
     }
 
     //------------------------------------------ FUNCIONALIDADES --------------------------------------------
@@ -61,16 +66,20 @@ public class Jugador {
      * Gastar créditos (solo si tiene suficientes)
      * @return
      */
-    public int gastarCreditos(){//ToDo
+    public int gastarCreditos(int credito){//ToDo
+        if (creditosJugador >= 0) System.out.println("No tienes suficientes créditos");
+        else creditosJugador += credito;
+
         return -1;
     }
 
+
     /**
      * Incrementar el número de partidas jugadas
-     * @return
+     * @return int - numero de partidas jugadas
      */
     public int contPartidas() {//ToDo
-        return -1;
+        return numPartidasJugadas++;
     }
 
 
@@ -80,7 +89,7 @@ public class Jugador {
                 "nameJugador='" + nameJugador + '\'' +
                 ", idJugador='" + idJugador + '\'' +
                 ", creditosJugador=" + creditosJugador +
-                ", numPartidasJagadas=" + numPartidasJagadas +
+                ", numPartidasJagadas=" + numPartidasJugadas +
                 '}';
     }
 }

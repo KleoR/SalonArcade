@@ -10,12 +10,12 @@ public class Mensajes {
             
                |  1 | Registrar nuevo jugador
                |  2 | Registrar nueva máquina arcade
-               |  3 | Recargar créditos a un jugador
+               |  x | Recargar créditos a un jugador
                |  4 | Listar jugadores
                |  5 | Listar máquinas
                |  6 | Listar máquinas activas
                |  7 | Mantenimiento / Reactivar máquina
-               |  8 | Jugar una partida
+               |  x | Jugar una partida
                |  9 | Mostrar jugador más activo
                | 10 | Mostrar máquina más usada
                | 11 | Ranking de una máquina
@@ -29,34 +29,52 @@ public class Mensajes {
             """);
     }
 
-//
-//        String menuV1 = ("""
-//            =============================================================
-//                                A R C A D E   M A N A G E R
-//            =============================================================
-//
-//               1. Jugadores
-//               2. Máquinas Arcade
-//               3. Partidas y Estadísticas
-//
-//            -------------------------------------------------------------
-//                             0.  █  S  A  L  I  R  █
-//            =============================================================
-//            """);
-//
-//        String menuV2 = ("""
-//            ====================  J U G A D O R E S  ====================
-//
-//               1. Registrar nuevo jugador
-//               2. Recargar créditos
-//               3. Editar jugador
-//               4. Listar jugadores
-//               5. Jugador más activo
-//
-//            -------------------------------------------------------------
-//               0. Volver al menú principal
-//            =============================================================
-//            """);
+
+    public static void mostrarMenuPrincipal(){
+        System.out.println("""
+            =============================================================
+                             A R C A D E   M A N A G E R
+            =============================================================
+
+               1. Jugar
+               2. Gestión de jugadores
+               3. Gestión de máquinas
+               4. Estadísticas y Ranking
+
+            -------------------------------------------------------------
+                             0.  █  S  A  L  I  R  █
+            =============================================================
+            """);
+    }
+
+    public static void mostrarMenuJugar(){
+        System.out.println("""
+            ======================  J U G A D O R  ======================
+
+               1. Jugar una partida
+               2. Recargar créditos
+
+            -------------------------------------------------------------
+               0. Volver al menú principal
+            =============================================================
+            """);
+    }
+
+    public static void mostrarMenuGestionJugador(){
+        System.out.println("""
+            ====================  J U G A D O R E S  ====================
+
+               1. Registrar nuevo jugador
+               2. Recargar créditos
+               3. Editar jugador
+               4. Listar jugadores
+               5. Jugador más activo
+
+            -------------------------------------------------------------
+               0. Volver al menú principal
+            =============================================================
+            """);
+    }
 //
 //        String menuV2 = ("""
 //            =================  M Á Q U I N A S   A R C A D E  =================
