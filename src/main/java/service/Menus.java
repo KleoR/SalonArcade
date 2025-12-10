@@ -1,5 +1,7 @@
 package service;
 
+import model.MaquinaArcade;
+import model.SalaRecreativa;
 import utils.Utils;
 
 public class Menus {
@@ -9,7 +11,7 @@ public class Menus {
         boolean salir = true;
 
         do{
-            switch(Utils.OpcionesUser(0,4)){
+            switch(Utils.opcionesUser(0,4)){
                 case 1:
                     MenuJugar();
                     break;
@@ -35,7 +37,7 @@ public class Menus {
         boolean salir = true;
 
         do{
-            switch(Utils.OpcionesUser(0,2)){
+            switch(Utils.opcionesUser(0,2)){
                 case 1:
                     //Jugar una partida
                     break;
