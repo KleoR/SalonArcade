@@ -3,15 +3,10 @@ package model;
 import utils.Utils;
 
 public class Jugador {
-    int h = Utils.leerEnter("");
-
-
     private String nameJugador;
     private String idJugador;
     private int creditosJugador;
     private int numPartidasJugadas;
-
-    //------------------------------------------ GETTER/SETTER --------------------------------------------
 
     public Jugador(String nameJugador, String idJugador, int creditosJugador, int numPartidasJagadas) {
         this.nameJugador = nameJugador;
@@ -19,6 +14,8 @@ public class Jugador {
         this.creditosJugador = creditosJugador;
         this.numPartidasJugadas = numPartidasJagadas;
     }
+
+    //------------------------------------------ GETTER/SETTER --------------------------------------------
 
     public String getNameJugador() {
         return nameJugador;

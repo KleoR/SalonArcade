@@ -1,40 +1,37 @@
 package model;
 
 public class SalaRecreativa {
-    private String[] listJugadores;
-    private String[] listMaquinas;
+    private String[] listaJugadores = new String[50];
+    private String[] listaMaquinas;
+
+    public SalaRecreativa(String[] listaJugadores, String[] listMaquinas, int numJugadores, int numMaquinas) {
+        this.listaJugadores = listaJugadores;
+        this.listaMaquinas = listMaquinas;
+//        this.numJugadores = numJugadores;
+//        this.numMaquinas = numMaquinas;
+    }
 
     //------------------------------------------ GETTER/SETTER --------------------------------------------
 
-    public SalaRecreativa(String[] listJugadores, String[] listMaquinas) {
-        this.listJugadores = listJugadores;
-        this.listMaquinas = listMaquinas;
+    public String[] getListaJugadores() {
+        return listaJugadores;
     }
 
-    public String[] getListJugadores() {
-        return listJugadores;
+    public void setListaJugadores(String[] listaJugadores) {
+        this.listaJugadores = listaJugadores;
     }
 
-    public void setListJugadores(String[] listJugadores) {
-        this.listJugadores = listJugadores;
+    public String[] getListaMaquinas() {
+        return listaMaquinas;
     }
 
-    public String[] getListMaquinas() {
-        return listMaquinas;
+    public void setListaMaquinas(String[] listaMaquinas) {
+        this.listaMaquinas = listaMaquinas;
     }
 
-    public void setListMaquinas(String[] listMaquinas) {
-        this.listMaquinas = listMaquinas;
-    }
 
-    //------------------------------------------ FUNCIONALIDADES --------------------------------------------
+//------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
-    /**
-     * Registrar nuevos jugadores
-     */
-    public void RegistJugador(){ //ToDo
-
-    }
 
     /**
      * Registrar nuevas máquinas
@@ -56,6 +53,7 @@ public class SalaRecreativa {
     public void BuscarMaquina(){
 
     }
+
 
 
 }

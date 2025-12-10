@@ -12,7 +12,7 @@ public class Utils {
      * @param mjs  mensaje que se mostrará al pedir el número
      * @return int - numero validado
      */
-    public int leerEnter(String mjs){//ToDo - Uncheck
+    public static int leerEnter(String mjs){//ToDo - Uncheck
         Scanner sc = new Scanner(System.in);
         boolean esValido = true;
         int numero = 0;
@@ -40,7 +40,7 @@ public class Utils {
      * @param max valor maximo permitido (incluido)
      * @return boolean - validacion del rango
      */
-    public boolean comprobarRango(int valor, int min, int max){//ToDo - Uncheck
+    public static boolean comprobarRango(int valor, int min, int max){//ToDo - Uncheck
          return valor >= min && valor <= max;
     }
 
@@ -54,7 +54,7 @@ public class Utils {
      * @param max valor maximo permitido (incluido)
      * @return int - numero entero dentro del rango
      */
-    public int leerEnterEnRango(String mjs, int min, int max) {
+    public static int leerEnterEnRango(String mjs, int min, int max) {
         boolean esValido;
         int valor;
 
@@ -76,10 +76,16 @@ public class Utils {
      * @param max valor maximo permitido (incluido)
      * @return int - numero aleatorio
      */
-    public int generarNumeroAleatorio(int min, int max){//ToDo - Uncheck
+    public static int generarNumeroAleatorio(int min, int max){//ToDo - Uncheck
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
+    /**
+     * Pide por pantalla un número al usuario y verifica que este dentro del rango asignado.
+     * @param min numero de la primera opcion
+     * @param max numero de la ultima opcion
+     * @return int - numero dentro del rango
+     */
     public static int opcionesUser(int min, int max){
         return Utils.leerEnterEnRango("Seleccione una opción: ", min, max);
     }

@@ -3,6 +3,7 @@ package service;
 import model.MaquinaArcade;
 import model.SalaRecreativa;
 import utils.Utils;
+import service.GestorJugador;
 
 public class Menus {
 
@@ -39,7 +40,7 @@ public class Menus {
         do{
             switch(Utils.opcionesUser(0,2)){
                 case 1:
-                    //Jugar una partida
+                    if(GestorJugador.hayJugadores())
                     break;
                 case 2:
                     //Recargar créditos

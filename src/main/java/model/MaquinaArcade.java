@@ -1,5 +1,7 @@
 package model;
 
+import utils.Utils;
+
 public class MaquinaArcade {
     private String nameMaquina;
     private int generoJuego;
@@ -69,39 +71,64 @@ public class MaquinaArcade {
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
     /**
-     * Cambia el estaado de la maquina
-     * @return
+     * Sobreescribe el estado de la máquina por el aportado por el atributo
+     *
+     * @param nuevoEstado nuevo estado de la máquina
      */
-    public static boolean modEstadoMaquina(){// Todo
-        return true;
+    public void modEstadoMaquina(boolean nuevoEstado){// Todo
+        this.estadoMaquina = nuevoEstado;
     }
 
     /**
-     * Consulta si una maquina esta activa
+     * Si el contador llega a un múltiplo de 100 (100, 200, 300, 1000, 1500…), la
+     * máquina se desactiva sola para mantenimiento.
      */
-    public static void consultEstadoMaquina(){//Todo
-
+    public void estadoMaquina(){//Todo
+        if (this.contadorPartidas % 100 == 0) {
+            modEstadoMaquina(false);
+            System.out.println("La máquina se ha desactivado para mantenimiento.");
+        } else if (this.contadorPartidas % 100 != 0)  modEstadoMaquina(true);
     }
 
     /**
      * Se debe generar una puntuación aleatoria entre 0 y 9999, e incrementar el
      * contador de partidas.
-     * ○ Si el contador llega a un múltiplo de 100 (100, 200, 300, 1000, 1500…), la
-     * máquina se desactiva sola para mantenimiento.
+
+     * ○
      * ○ Si la puntuación ha superado el top 3, registarla y actualizar correctamente el
      * ranking (insertando en el lugar correspondiente y desplazando valores).
      * ○ El método debe devolver la puntuación de la partida.
      */
-    public static void jugarNuevaPartida(){ //Todo
+    public int jugarNuevaPartida(){ //Todo
+        int puntuacion = 0;
 
+        if (estadoMaquina){
+            System.out.println("La máquina está inactiva. No se puede jugar.");
+            // Devolver al menu de elección de maquina
+        } else{
+            puntuacion = genPuntuacion();
+            conMaquinaPartida();
+        }
+        return puntuacion;
+    }
+
+
+
+    /**
+     * Se debe generar una puntuación aleatoria entre 0 y 9999
+     */
+    public int genPuntuacion(){
+       return Utils.generarNumeroAleatorio(0,9999);
     }
 
     /**
-     * Muestra informacion de la maquina
+     * e incrementar el contador de partidas.
+     * @return int - contador actualizado
      */
-    public static void infoMaquina(String nameMaquina, int generoJuego, int pricePartida, boolean estadoMaquina, int contadorPartidas, String[][] rankingJugadores){ //Todo
-
+    public int conMaquinaPartida(){
+        return ++this.contadorPartidas;
     }
+
 }
 
 
