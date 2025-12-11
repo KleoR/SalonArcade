@@ -20,8 +20,8 @@ public class GestorJugador {
      * Comprueba si hay jugadores.
      * @return booleano - devuelve si hay o no jugadores.
      */
-    public static boolean hayJugadores() {
-        return numJugadores > 0;
+    public boolean noHayJugadores() {
+        return numJugadores <= 0;
     }
 
     /**
