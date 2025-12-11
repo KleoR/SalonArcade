@@ -99,7 +99,7 @@ public class Utils {
      */
     public static String nombrar(String mjs, int min, int max){
         Scanner sc = new Scanner(System.in);
-        boolean esValido = false;
+        boolean esValido = true;
         String name = "";
 
         do {
@@ -108,14 +108,12 @@ public class Utils {
 
             if (name.isEmpty()) System.out.println("Error: el nombre no puede estar vacío.");
             else if (name.length() < min || name.length() > max) System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");
-            else esValido = true;
+            else esValido = false;
 
         } while (esValido);
 
         return name;
     }
-
-
 
 }
 
