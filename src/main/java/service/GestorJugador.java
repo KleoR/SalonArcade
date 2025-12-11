@@ -1,19 +1,16 @@
 package service;
 
 import model.Jugador;
-import model.SalaRecreativa;
 import utils.Utils;
 
 public class GestorJugador {
-    private SalaRecreativa sala;
-    private Jugador[] jugadores;
-    public static int numJugadores;
+    private final Jugador[] jugadores;
+    private int numJugadores;
 
 
-    public GestorJugador(SalaRecreativa sala) { // ← nombre bien
-        this.sala = sala;
+    public GestorJugador() {
         this.jugadores = new Jugador[50];
-        numJugadores = 0;
+        this.numJugadores = 0;
     }
 
     /**
@@ -25,8 +22,7 @@ public class GestorJugador {
     }
 
     /**
-     *
-     * @return
+     * Solicita un nombre por consola y se le asigna un id, despues lo lleva a guardar.
      */
     public void RegisterJugador(){ //ToDo
         if (noHayJugadores()) Mensajes.noHayJugadores();
@@ -35,9 +31,8 @@ public class GestorJugador {
         System.out.println("╚═══════════════════════════════════╝");
         String idJugador = ""+ Utils.generarNumeroAleatorio(1000,9999);
 
-        Jugador nuevo = new Jugador(nameJugador, idJugador, 0, 0);
+        Jugador nuevo = new Jugador(nameJugador, idJugador, 0, -1);
         guardarJugador(nuevo);
-        return nuevo;
     }
 
     public void guardarJugador(Jugador nuevo) {
@@ -50,13 +45,6 @@ public class GestorJugador {
         for (int i = 0; i < numJugadores; i++) {
             System.out.println("[ " + (i + 1) + " ] " + jugadores[i]);
         }
-    }
-
-    public Jugador buscarPorId(String id) {
-        for (int i = 0; i < numJugadores; i++) {
-            if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) return jugadores[i];
-        }
-        return null;
     }
 
     public Jugador elegirJugador(){
