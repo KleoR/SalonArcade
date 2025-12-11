@@ -61,6 +61,7 @@ public class Utils {
         do {
             valor = leerEnter(mjs);
             esValido = comprobarRango(valor, min, max);
+            System.out.println("\n");
 
             if (!esValido) System.out.println("Error: el valor debe estar entre " + min + " y " + max + ".");
 
