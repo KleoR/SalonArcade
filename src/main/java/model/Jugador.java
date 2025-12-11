@@ -82,12 +82,11 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{" +
-                "nameJugador='" + nameJugador + '\'' +
-                ", idJugador='" + idJugador + '\'' +
-                ", creditosJugador=" + creditosJugador +
-                ", numPartidasJagadas=" + numPartidasJugadas +
-                '}';
+        return """
+                ==[ %s ]===============================
+                      Créditos: %d | Partidas: %d         [ ID: %s ]
+                =====================================================
+                """.formatted(this.nameJugador, this.creditosJugador, this.contPartidas(), this.idJugador);
     }
 }
 
