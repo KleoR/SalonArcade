@@ -38,8 +38,8 @@ public class GestorJugador {
     }
 
     public void guardarJugador(Jugador nuevo) {
-        jugadores[numJugadores] = nuevo;
-        numJugadores++;
+        if (numJugadores >= jugadores.length) System.out.println("Límite de jugadores alcanzado.");
+        else jugadores[numJugadores++] = nuevo;
     }
 
 }
