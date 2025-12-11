@@ -23,7 +23,10 @@ public class GestorJugador {
     }
 
     /**
-     * Solicita un nombre por consola y se le asigna un id, despues lo lleva a guardar.
+     * Registra un nuevo jugador y se solicita un nombre mediante Utils.nombrar().
+     * Se genera un ID único para el jugador mediante generaIDJugador().
+     * Se crea la instancia Jugador y se almacena en guardarJugador().
+     *  Nota: Este método no devuelve el jugador creado pero podría si se quire.
      */
     public void RegisterJugador(){ //ToDo
         if (noHayJugadores()) Mensajes.noHayJugadores();
