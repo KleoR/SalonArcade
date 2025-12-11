@@ -28,8 +28,11 @@ public class GestorJugador {
      *
      * @return
      */
-    public Jugador RegistJugador(){ //ToDo
-        String nameJugador = Utils.nombrar("====  N O M B R E : ", 3,10);
+    public void RegisterJugador(){ //ToDo
+        if (noHayJugadores()) Mensajes.noHayJugadores();
+
+        String nameJugador = Utils.nombrar(Mensajes.nuevoNombreJugador(), 3,10);
+        System.out.println("╚═══════════════════════════════════╝");
         String idJugador = ""+ Utils.generarNumeroAleatorio(1000,9999);
 
         Jugador nuevo = new Jugador(nameJugador, idJugador, 0, 0);
