@@ -14,8 +14,9 @@ public class GestorJugador {
     }
 
     /**
-     * Comprueba si hay jugadores.
-     * @return booleano - devuelve si hay o no jugadores.
+     * Comprueba si existen jugadores registrados.
+     * La verificación se realiza comprobando el valor de NumJugadores
+     * @return boolean - true si no hay jugadores registrados
      */
     public boolean noHayJugadores() {
         return numJugadores <= 0;
