@@ -14,7 +14,7 @@ public class Utils {
      */
     public static int leerEnter(String mjs){//ToDo - Uncheck
         Scanner sc = new Scanner(System.in);
-        boolean esValido = true;
+        boolean esValido;
         int numero = 0;
 
         do {
@@ -99,10 +99,11 @@ public class Utils {
      */
     public static String nombrar(String mjs, int min, int max){
         Scanner sc = new Scanner(System.in);
-        boolean esValido = true;
-        String name = "";
+        boolean esValido;
+        String name;
 
         do {
+            esValido = true;
             System.out.print(mjs);
             name = sc.nextLine().trim();
 
