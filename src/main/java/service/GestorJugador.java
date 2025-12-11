@@ -45,4 +45,24 @@ public class GestorJugador {
         else jugadores[numJugadores++] = nuevo;
     }
 
+    public void mostrarJugadores(){
+        System.out.println("\n==================== LISTA DE JUGADORES ====================");
+        for (int i = 0; i < numJugadores; i++) {
+            System.out.println("[ " + (i + 1) + " ] " + jugadores[i]);
+        }
+    }
+
+    public Jugador buscarPorId(String id) {
+        for (int i = 0; i < numJugadores; i++) {
+            if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) return jugadores[i];
+        }
+        return null;
+    }
+
+    public Jugador elegirJugador(){
+        mostrarJugadores();
+        int index = Utils.leerEnterEnRango("Elige un jugador: ",1, numJugadores);
+        return jugadores[index - 1];
+    }
+
 }
