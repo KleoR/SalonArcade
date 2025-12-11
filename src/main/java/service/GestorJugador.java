@@ -53,4 +53,27 @@ public class GestorJugador {
         return jugadores[index - 1];
     }
 
+
+    //-------------------------------------------- ID ----------------------------------------------
+
+    public String generaIDJugador() {
+        String id;
+        do {
+            id = "" + Utils.generarNumeroAleatorio(1000, 9999);
+        } while (existeId(id));
+        return id;
+    }
+
+    private boolean existeId(String id) {
+        return buscarPorId(id) != null;
+    }
+
+    public Jugador buscarPorId(String id) {
+        Jugador encontrado = null;
+        for (int i = 0; i < numJugadores; i++) {
+            if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) encontrado = jugadores[i];
+        }
+        return encontrado;
+    }
+
 }
