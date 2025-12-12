@@ -60,6 +60,10 @@ public class GestorJugador {
 
     //-------------------------------------------- ID ----------------------------------------------
 
+    private boolean existeId(String id) {
+        return buscarPorId(id) != null;
+    }
+
     public String generaIDJugador() {
         String id;
         do {
