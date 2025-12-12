@@ -54,5 +54,34 @@ public class Menus {
 
     }
 
+    public static void MenuGestionDeJugadores(){
+        Mensajes.mostrarMenuGestionJugador();
+        boolean salir = true;
+
+        do{
+            switch(Utils.opcionesUser(0,5)){
+                case 1:
+                    gestor.RegisterJugador();
+                    MenuGestionDeJugadores();
+                    break;
+                case 2:
+                    //Gestión de jugadores
+                    break;
+                case 3:
+                    comprobarJugadores();
+                    break;
+                case 4:
+                    gestor.mostrarJugadores();
+                    MenuGestionDeJugadores();
+                    break;
+                case 5:
+                    break;
+                case 0:
+                    System.out.println("█  Has Salido  █");
+                    salir = false;
+            }
+
+        }while (salir);
+    }
 
 }
