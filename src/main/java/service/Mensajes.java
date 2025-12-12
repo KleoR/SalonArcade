@@ -2,27 +2,29 @@ package service;
 
 public class Mensajes {
 
+    //------------------------------------------- MENUS -------------------------------------------
+
     public static void mostrarMenu() {
         System.out.println("""
                 =============================================================
                               ★  A R C A D E   M A N A G E R  ★
                 =============================================================
-                
-                   |  1 | Registrar nuevo jugador
+
+                   |  x | Registrar nuevo jugador
                    |  2 | Registrar nueva máquina arcade
                    |  x | Recargar créditos a un jugador
-                   |  4 | Listar jugadores
+                   |  x | Listar jugadores
                    |  5 | Listar máquinas
                    |  6 | Listar máquinas activas
                    |  7 | Mantenimiento / Reactivar máquina
                    |  x | Jugar una partida
-                   |  9 | Mostrar jugador más activo
+                   |  x | Mostrar jugador más activo
                    | 10 | Mostrar máquina más usada
                    | 11 | Ranking de una máquina
                    | 12 | Dar de baja una máquina
                    | 13 | Editar máquina arcade
-                   | 14 | Editar jugador
-                
+                   | x | Editar jugador
+
                 -------------------------------------------------------------
                                  0.  █  S  A  L  I  R  █
                 =============================================================
@@ -62,11 +64,11 @@ public class Mensajes {
 
     public static void mostrarMenuGestionJugador() {
         System.out.println("""
-                ====================  J U G A D O R E S  ====================
+                =========  G E S T I Ó N   D E   J U G A D O R E S  =========
                 
                    1. Registrar nuevo jugador
-                   2. Recargar créditos
-                   3. Editar jugador
+                   2. Editar jugador
+                   3. Escoger jugador
                    4. Listar jugadores
                    5. Jugador más activo
                 
@@ -75,36 +77,74 @@ public class Mensajes {
                 =============================================================
                 """);
     }
-//
-//        String menuV2 = ("""
-//            =================  M Á Q U I N A S   A R C A D E  =================
-//
-//               1. Registrar nueva máquina arcade
-//               2. Listar máquinas
-//               3. Listar máquinas activas
-//               4. Mantenimiento / Reactivar
-//               5. Dar de baja máquina
-//               6. Editar máquina
-//               7. Máquina más usada
-//               8. Ranking de una máquina
-//
-//            -------------------------------------------------------------------
-//               0. Volver al menú principal
-//            ===================================================================
-//            """);
-//
-//        String menuV2 = ("""
-//            ===================  P A R T I D A S  ===================
-//
-//               1. Jugar una partida
-//               2. Jugador más activo
-//               3. Máquina más usada
-//               4. Ranking de una máquina
-//
-//            ----------------------------------------------------------
-//               0. Volver al menú principal
-//            ==========================================================
-//            """);
-//
+
+    public static void menuEditarJugador() {
+        System.out.println("""
+                ================  E D I T A R  J U G A D O R  ===============
+                
+                   1. Cambiar Nombre
+                   2. Recargar créditos
+                
+                -------------------------------------------------------------
+                   0. Volver al menú principal
+                =============================================================
+                """);
+    }
+
+    //------------------------------------- CAJA DE INSERCIÓN -------------------------------------
+
+    public static void encabezadoListaJugadores() {
+        System.out.println("\n==================== LISTA DE JUGADORES ====================");
+    }
+
+    public static String nuevoNombreJugador() {
+        return ("""
+                ╔══════════ NUEVO JUGADOR ══════════╗
+                   Introduzca nombre del jugador:
+                >""");
+    }
+
+    public static void nuevoNombreJugadorCierre() {
+        System.out.println("╚═══════════════════════════════════╝");
+    }
+
+    public static String anadirCredito() {
+        return ("""
+                ═════════════════════ RECARGAR CRÉDITO ═════════════════════
+               \s
+                   Introduzca la cantidad de créditos a añadir:
+                      >\s""");
+    }
+
+    public static void anadirCreditoCierre() {
+        System.out.println("""
+                ═════════════════════════════════════════════════════════════""");
+    }
+
+    //------------------------------------------ ALERTAS ------------------------------------------
+
+    public static void noHayCredito() {
+        System.out.println("""
+                =============================================================
+                             ⚠  NO TIENES CRÉDITOS SUFICIENTES  ⚠
+                -------------------------------------------------------------
+                      Este jugador no dispone de créditos suficientes.
+                                  Por favor, añada créditos.
+                =============================================================
+                """);
+    }
+
+    public static void noHayJugadores() {
+        System.out.println("""
+                =============================================================
+                                 ⚠  NO HAY JUGADORES REGISTRADOS  ⚠
+                -------------------------------------------------------------
+                            Aún no existe ningún jugador en el sistema.
+                                    Por favor, crea uno.
+                =============================================================
+                """);
+    }
+
+
 }
 

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 
 public class Utils {
+    static Scanner sc = new Scanner(System.in);
 
     /**
      * Pide un número por consola y comprueba si es un entero y devuelve un int
@@ -13,7 +14,6 @@ public class Utils {
      * @return int - numero validado
      */
     public static int leerEnter(String mjs){//ToDo - Uncheck
-        Scanner sc = new Scanner(System.in);
         boolean esValido;
         int numero = 0;
 
@@ -61,7 +61,6 @@ public class Utils {
         do {
             valor = leerEnter(mjs);
             esValido = comprobarRango(valor, min, max);
-            System.out.println("\n");
 
             if (!esValido) System.out.println("Error: el valor debe estar entre " + min + " y " + max + ".");
 
@@ -99,14 +98,14 @@ public class Utils {
      * @return String - nombre validado
      */
     public static String nombrar(String mjs, int min, int max){
-        Scanner sc = new Scanner(System.in);
         boolean esValido;
         String name;
+        sc.nextLine();
 
         do {
-            esValido = true;
             System.out.print(mjs);
             name = sc.nextLine().trim();
+            esValido = true;
 
             if (name.isEmpty()) System.out.println("Error: el nombre no puede estar vacío.");
             else if (name.length() < min || name.length() > max) System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");

@@ -3,15 +3,14 @@ package service;
 import model.Jugador;
 import utils.Utils;
 
-public class GestorJugador {
-    private final Jugador[] jugadores;
-    private int numJugadores;
+    public class GestorJugador {
+        private final Jugador[] jugadores;
+        private int numJugadores;
 
-
-    public GestorJugador() {
-        this.jugadores = new Jugador[50];
-        this.numJugadores = 0;
-    }
+        public GestorJugador() {
+            this.jugadores = new Jugador[50];
+            this.numJugadores = 0;
+        }
 
     /**
      * Comprueba si existen jugadores registrados.
@@ -29,23 +28,26 @@ public class GestorJugador {
      *  Nota: Este método no devuelve el jugador creado pero podría si se quire.
      */
     public void RegisterJugador(){ //ToDo
-        if (noHayJugadores()) Mensajes.noHayJugadores();
-
         String nameJugador = Utils.nombrar(Mensajes.nuevoNombreJugador(), 3,10);
-        System.out.println("╚═══════════════════════════════════╝");
-        String idJugador = ""+ Utils.generarNumeroAleatorio(1000,9999);
-
-        Jugador nuevo = new Jugador(nameJugador, idJugador, 0, -1);
+        Jugador nuevo = new Jugador(nameJugador, generaIDJugador(), 0, 1);
         guardarJugador(nuevo);
+
+        Mensajes.nuevoNombreJugadorCierre();
     }
 
+    /**
+     * Almacena un nuevo jugador en jugadores[], pero antes comprueba el límite máximo según jugadores.length.
+     *  numJugadores, incrementa numJugadores.
+     * @param  nuevo jugador a almacenar.
+     */
     public void guardarJugador(Jugador nuevo) {
         if (numJugadores >= jugadores.length) System.out.println("Límite de jugadores alcanzado.");
         else jugadores[numJugadores++] = nuevo;
     }
 
     public void mostrarJugadores(){
-        System.out.println("\n==================== LISTA DE JUGADORES ====================");
+        Mensajes.encabezadoListaJugadores();
+
         for (int i = 0; i < numJugadores; i++) {
             System.out.println("[ " + (i + 1) + " ] " + jugadores[i]);
         }
@@ -56,7 +58,6 @@ public class GestorJugador {
         int index = Utils.leerEnterEnRango("Elige un jugador: ",1, numJugadores);
         return jugadores[index - 1];
     }
-
 
     //-------------------------------------------- ID ----------------------------------------------
 
@@ -72,10 +73,6 @@ public class GestorJugador {
         return id;
     }
 
-    private boolean existeId(String id) {
-        return buscarPorId(id) != null;
-    }
-
     public Jugador buscarPorId(String id) {
         Jugador encontrado = null;
         for (int i = 0; i < numJugadores; i++) {
@@ -83,5 +80,4 @@ public class GestorJugador {
         }
         return encontrado;
     }
-
 }
