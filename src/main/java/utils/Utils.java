@@ -122,5 +122,14 @@ public class Utils {
         }
     }
 
+    public static int guardar(Object nuevo, Object[] datos, int n, String msgLimite) {
+        if (n >= datos.length) System.out.println(msgLimite);
+        else {
+            datos[n] = nuevo;
+            n++;
+        }
+        return n;
+    }
+
 }
 

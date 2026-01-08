@@ -5,58 +5,69 @@ import model.MaquinaArcade;
 import utils.Mensajes;
 
 /**
- * Gestiona la logica que compartan GestorMaquinaArcade y GestorJugador
+ *
  */
 public class SalaRecreativa {
-    private final GestorJugador gestorJugador;
-    private final MaquinaArcade gestorMaquina;
-    static GestorJugador gestor = new GestorJugador();
-    private static Jugador jugadorActual;
+    private final GestorJugador gestorJugador = new GestorJugador();
+    private final GestorMaquina gestorMaquina = new GestorMaquina();
 
-    public SalaRecreativa(GestorJugador gestorJugador, MaquinaArcade gestorMaquina) {
-        this.gestorJugador = gestorJugador;
-        this.gestorMaquina = gestorMaquina;
-    }
+    private Jugador jugadorActual;
+    private MaquinaArcade maquinaActual;
 
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
-    public static boolean hayJugadorActual(){
-    return jugadorActual != null;
-}
 
-    public static boolean jugadorListo(){
-        if (!hayJugadorActual()) comprobarJugadores();
-        jugadorActual = gestor.elegirJugador();
-        noHayCreditos();
+    public  boolean JuegoListo(){
+        if (jugadorListo() && MaquinaLista()) gestorMaquina.elegirMaquina();
+
+        gestorMaquina.jugarNuevaPartida();
+        return true;
+    }
+
+    //------------------------------- JUGADOR -------------------------------------------
+
+    public boolean jugadorListo(){
+        boolean listo = true;
+
+        comprobarJugadores();
+
+        if (!hayJugadorActual()) jugadorActual = gestorJugador.elegirJugador();
+        if (jugadorActual == null) listo = false;
+        if (listo) noHayCreditos(jugadorActual);
+
+        return listo;
+    }
+
+    public void comprobarJugadores(){
+        while (gestorJugador.noHayJugadores()) {
+            Mensajes.noHayJugadores();
+            gestorJugador.RegisterJugador();
+        }
+    }
+
+    public boolean hayJugadorActual() {
+        return jugadorActual != null;
+    }
+
+    //------------------------------- MAQUINA -------------------------------------------
+
+    public boolean MaquinaLista(){
+        if (gestorMaquina.noHayMaquinas()) return true;
 
         return true;
     }
 
-    public static boolean MaquinaLista(){
+    //------------------------------- CRÉDITOS -------------------------------------------
 
+    public void recargaCreditosJugador(){
+        comprobarJugadores();
+        Jugador jugador = gestorJugador.elegirJugador();
+        jugador.recargaCreditos();
     }
 
-    public static boolean JuegoListo(){
-        if (jugadorListo()) MaquinaArcade.elegirMaquina();
-
-    }
-
-    public static void comprobarJugadores(){
-        if(gestor.noHayJugadores()) {
-            Mensajes.noHayJugadores();
-            gestor.RegisterJugador();
-        }
-    }
-
-    public static void noHayCreditos(){
-        if (jugadorActual.comprobarCredito()){
+    public void noHayCreditos(Jugador jugador){
+        while (jugador.comprobarCredito()){
             Mensajes.noHayCredito();
-            jugadorActual.recargaCreditos(jugadorActual);
+            jugador.recargaCreditos();
         }
     }
-
-    public static void recargaCreditosJugador(){
-        Jugador jugador = gestor.elegirJugador();
-        jugador.recargaCreditos(jugador);
-    }
-
 }

@@ -3,65 +3,60 @@ package model;
 import utils.Utils;
 
 public class MaquinaArcade {
+    private final MaquinaArcade[] maquinas = new MaquinaArcade[50];
     private String nameMaquina;
-    private int generoJuego;
     private int pricePartida;
-    private boolean estadoMaquina;
     private int contadorPartidas;
+    private boolean estadoMaquina;
     private String[][] rankingJugadores;
 
-    public MaquinaArcade(String nameMaquina, int generoJuego, int pricePartida, boolean estadoMaquina, int contadorPartidas) {
+    public MaquinaArcade(String nameMaquina, String generoJuego, int pricePartida, boolean estadoMaquina, int contadorPartidas) {
         this.nameMaquina = nameMaquina;
-        this.generoJuego = generoJuego;
         this.pricePartida = pricePartida;
-        this.estadoMaquina = estadoMaquina;
-        this.contadorPartidas = contadorPartidas;
+        this.estadoMaquina = true;
+        this.contadorPartidas = 0;
     }
 
-    //------------------------------------------ GETTER/SETTER --------------------------------------------
+//------------------------------------------ GETTER/SETTER --------------------------------------------
+
+    public MaquinaArcade[] getMaquinas() {
+        return maquinas;
+    }
 
     public String getNameMaquina() {
         return nameMaquina;
-    }
-
-    public int getGeneroJuego() {
-        return generoJuego;
-    }
-
-    public int getPricePartida() {
-        return pricePartida;
-    }
-
-    public boolean isEstadoMaquina() {
-        return estadoMaquina;
-    }
-
-    public int getContadorPartidas() {
-        return contadorPartidas;
-    }
-
-    public String[][] getRankingJugadores() {
-        return rankingJugadores;
     }
 
     public void setNameMaquina(String nameMaquina) {
         this.nameMaquina = nameMaquina;
     }
 
-    public void setGeneroJuego(int generoJuego) {
-        this.generoJuego = generoJuego;
+    public int getPricePartida() {
+        return pricePartida;
     }
 
     public void setPricePartida(int pricePartida) {
         this.pricePartida = pricePartida;
     }
 
-    public void setEstadoMaquina(boolean estadoMaquina) {
-        this.estadoMaquina = estadoMaquina;
+    public int getContadorPartidas() {
+        return contadorPartidas;
     }
 
     public void setContadorPartidas(int contadorPartidas) {
         this.contadorPartidas = contadorPartidas;
+    }
+
+    public boolean isEstadoMaquina() {
+        return estadoMaquina;
+    }
+
+    public void setEstadoMaquina(boolean estadoMaquina) {
+        this.estadoMaquina = estadoMaquina;
+    }
+
+    public String[][] getRankingJugadores() {
+        return rankingJugadores;
     }
 
     public void setRankingJugadores(String[][] rankingJugadores) {
@@ -69,7 +64,6 @@ public class MaquinaArcade {
     }
 
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
-
     /**
      * Sobreescribe el estado de la máquina por el aportado por el atributo
      *
@@ -84,7 +78,7 @@ public class MaquinaArcade {
      * máquina se desactiva sola para mantenimiento.
      */
     public void estadoMaquina(){//Todo
-        if (this.contadorPartidas % 100 == 0) {
+        if (this.contadorPartidas > 0 && this.contadorPartidas % 100 == 0) {
             modEstadoMaquina(false);
             System.out.println("La máquina se ha desactivado para mantenimiento.");
         } else if (this.contadorPartidas % 100 != 0)  modEstadoMaquina(true);
@@ -102,17 +96,16 @@ public class MaquinaArcade {
     public int jugarNuevaPartida(){ //Todo
         int puntuacion = 0;
 
-        if (estadoMaquina){
+        if (!estadoMaquina){
             System.out.println("La máquina está inactiva. No se puede jugar.");
             // Devolver al menu de elección de maquina
         } else{
             puntuacion = genPuntuacion();
             conMaquinaPartida();
+            estadoMaquina();
         }
         return puntuacion;
     }
-
-
 
     /**
      * Se debe generar una puntuación aleatoria entre 0 y 9999
@@ -128,7 +121,6 @@ public class MaquinaArcade {
     public int conMaquinaPartida(){
         return ++this.contadorPartidas;
     }
-
 }
 
 

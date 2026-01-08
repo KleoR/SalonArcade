@@ -52,9 +52,9 @@ public class Jugador {
 
     //------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
-    public void recargaCreditos(Jugador jugador) {
-        int cantidad = Utils.leerEnterEnRango(Mensajes.annadirCredito(),0,9999);
-        jugador.creditosJugador += cantidad;
+    public void recargaCreditos() {
+        int cantidad = Utils.leerEnterEnRango(Mensajes.annadirCredito(),1,9999);
+        this.creditosJugador += cantidad;
         Mensajes.annadirCreditoCierre();
     }
 
@@ -63,11 +63,11 @@ public class Jugador {
      * @return creditos del jugador
      */
     public int gastarCreditos(int credito) {
+
         if (comprobarCredito()) System.out.println("Crédito inválido.");
+        else if (creditosJugador < credito) System.out.println("No tienes suficientes créditos");
+        else creditosJugador -= credito;
 
-        if (creditosJugador < credito) System.out.println("No tienes suficientes créditos");
-
-        creditosJugador -= credito;
         return creditosJugador;
     }
 

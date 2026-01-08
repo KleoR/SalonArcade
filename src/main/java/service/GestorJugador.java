@@ -1,9 +1,10 @@
 package service;
 
 import model.Jugador;
+import utils.Mensajes;
 import utils.Utils;
 
-    public class GestorJugador {
+public class GestorJugador {
         private final Jugador[] jugadores;
         private int numJugadores;
 
@@ -32,26 +33,18 @@ import utils.Utils;
         Jugador nuevo = new Jugador(nameJugador, generaIDJugador(), 0, 1);
         guardarJugador(nuevo);
 
-        Mensajes.nuevoNombreJugadorCierre();
+        Mensajes.nuevoNombreCierre();
     }
 
-    /**
-     * Almacena un nuevo jugador en jugadores[], pero antes comprueba el límite máximo según jugadores.length.
-     *  numJugadores, incrementa numJugadores.
-     * @param  nuevo jugador a almacenar.
-     */
     public void guardarJugador(Jugador nuevo) {
-        if (numJugadores >= jugadores.length) System.out.println("Límite de jugadores alcanzado.");
-        else jugadores[numJugadores++] = nuevo;
+        numJugadores = Utils.guardar(nuevo, jugadores, numJugadores, "Límite de máquinas alcanzado.");
     }
 
-    public void mostrarJugadores(){
+    public void mostrarJugadores() {
         Mensajes.encabezadoListaJugadores();
-
-        for (int i = 0; i < numJugadores; i++) {
-            System.out.println("[ " + (i + 1) + " ] " + jugadores[i]);
-        }
+        Utils.mostrarArray(jugadores, numJugadores);
     }
+
 
     public Jugador elegirJugador(){
         mostrarJugadores();
