@@ -1,15 +1,15 @@
 package service;
 
+import utils.Mensajes;
 import utils.Utils;
-import static controller.Principal.*;
 
 public class Menus {
     static GestorJugador gestor = new GestorJugador();
     public static void MenuPrincipal(){
-        Mensajes.mostrarMenuPrincipal();
         boolean salir = true;
 
         do{
+            Mensajes.mostrarMenuPrincipal();
             switch(Utils.opcionesUser(0,4)){
                 case 1:
                     MenuJugar();
@@ -18,10 +18,10 @@ public class Menus {
                     MenuGestionDeJugadores();
                     break;
                 case 3:
-                    //Gestión de máquinas
+                    MenuGestionDeMaquinas();
                     break;
                 case 4:
-                    //Estadísticas y Ranking
+                    MenuEstadisticasRanking();
                     break;
                 case 0:
                     System.out.println("█  Has Salido  █");
@@ -32,92 +32,113 @@ public class Menus {
     }
 
     public static void MenuJugar(){
-        Mensajes.mostrarMenuJugar();
         boolean salir = true;
 
         do{
+            Mensajes.mostrarMenuJugar();
             switch(Utils.opcionesUser(0,2)){
                 case 1:
-                    if (jugadorListo()) elegirMaquina();
-                    MenuJugar();
+                    //
                     break;
                 case 2:
-                    comprobarJugadores();
-                    recargaCreditosJugador();
-                    gestor.mostrarJugadores();
+                    //                    SalaRecreativa.comprobarJugadores();
+                    //                    SalaRecreativa.recargaCreditosJugador();
+                    //                    gestor.mostrarJugadores();
                     break;
                 case 0:
-                    MenuPrincipal();
                     salir = false;
+                    break;
             }
 
         }while (salir);
-
     }
 
     public static void MenuGestionDeJugadores(){
-        Mensajes.mostrarMenuGestionJugador();
         boolean salir = true;
 
         do{
+            Mensajes.mostrarMenuGestionJugador();
             switch(Utils.opcionesUser(0,5)){
                 case 1:
                     gestor.RegisterJugador();
-                    MenuGestionDeJugadores();
                     break;
                 case 2:
                     //Gestión de jugadores
                     Mensajes.menuEditarJugador();
                     break;
                 case 3:
-                    comprobarJugadores();
-                    MenuGestionDeJugadores();
+                    SalaRecreativa.comprobarJugadores();
                     break;
                 case 4:
                     gestor.mostrarJugadores();
-                    MenuGestionDeJugadores();
                     break;
                 case 5:
 
                     break;
                 case 0:
-                    MenuPrincipal();
                     salir = false;
+                    break;
             }
 
         }while (salir);
     }
 
-    public static void elegirMaquina(){
-        Mensajes.mostrarMenuGestionJugador();
+    public static void MenuGestionDeMaquinas(){
         boolean salir = true;
 
         do{
+            Mensajes.mostrarMenuGestionMaquina();
             switch(Utils.opcionesUser(0,5)){
                 case 1:
-                    //
-                    elegirMaquina();
+                    //Registrar maquina
                     break;
                 case 2:
-                    //Gestión de jugadores
+                    // Editar maquina
                     break;
                 case 3:
+                    // Escoger maquina
+                    break;
+                case 4:
+                    // Listar máquinas
+                    break;
+                case 5:
+                    // Listar máquinas activas
+                    break;
+                case 6:
+                    // Maquina más usada
+                    break;
+                case 0:
+                    salir = false;
+                    break;
+            }
 
+        }while (salir);
+    }
+
+    public static void MenuEstadisticasRanking(){
+        boolean salir = true;
+
+        do{
+            Mensajes.building();
+            switch(Utils.opcionesUser(0,4)){
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
 
                     break;
                 case 4:
 
-
-                    break;
-                case 5:
                     break;
                 case 0:
-                    MenuPrincipal();
+                    System.out.println("█  Has Salido  █");
                     salir = false;
             }
 
         }while (salir);
     }
-
 
 }
