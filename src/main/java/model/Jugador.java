@@ -51,12 +51,10 @@ public class Jugador {
 
     //------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
-    /**
-     * Recarga el credito
-     * @return
-     */
-    public int recargaCreditos(){//ToDo
-        return -1;
+    public void recargaCreditos(Jugador jugador) {
+        int cantidad = Utils.leerEnterEnRango(Mensajes.annadirCredito(),0,9999);
+        jugador.creditosJugador += cantidad;
+        Mensajes.annadirCreditoCierre();
     }
 
     /**
