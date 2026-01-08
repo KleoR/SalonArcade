@@ -116,5 +116,11 @@ public class Utils {
         return name;
     }
 
+    public static void mostrarArray(Object[] datos, int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.println("[ " + (i + 1) + " ] " + datos[i]);
+        }
+    }
+
 }
 
