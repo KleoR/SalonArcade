@@ -1,5 +1,6 @@
 package model;
 
+import utils.Mensajes;
 import utils.Utils;
 
 public class Jugador {
@@ -8,11 +9,11 @@ public class Jugador {
     private int creditosJugador;
     private int numPartidasJugadas;
 
-    public Jugador(String nameJugador, String idJugador, int creditosJugador, int numPartidasJagadas) {
+    public Jugador(String nameJugador, String idJugador, int creditosJugador, int numPartidasJugadas) {
         this.nameJugador = nameJugador;
         this.idJugador = idJugador;
         this.creditosJugador = creditosJugador;
-        this.numPartidasJugadas = numPartidasJagadas;
+        this.numPartidasJugadas = 0;
     }
 
     //------------------------------------------ GETTER/SETTER --------------------------------------------
@@ -59,13 +60,15 @@ public class Jugador {
 
     /**
      * Gastar créditos (solo si tiene suficientes)
-     * @return
+     * @return creditos del jugador
      */
-    public int gastarCreditos(int credito){//ToDo
-        if (creditosJugador >= 0) System.out.println("No tienes suficientes créditos");
-        else creditosJugador += credito;
+    public int gastarCreditos(int credito) {
+        if (comprobarCredito()) System.out.println("Crédito inválido.");
 
-        return -1;
+        if (creditosJugador < credito) System.out.println("No tienes suficientes créditos");
+
+        creditosJugador -= credito;
+        return creditosJugador;
     }
 
     public boolean comprobarCredito() {
@@ -80,7 +83,6 @@ public class Jugador {
         numPartidasJugadas++;
         return numPartidasJugadas;
     }
-
 
     @Override
     public String toString() {
