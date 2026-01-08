@@ -68,6 +68,9 @@ public class Jugador {
         return -1;
     }
 
+    public boolean comprobarCredito() {
+        return creditosJugador <= 0;
+    }
 
     /**
      * Incrementar el número de partidas jugadas
