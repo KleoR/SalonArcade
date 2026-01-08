@@ -119,7 +119,7 @@ public class Menus {
         boolean salir = true;
 
         do{
-            Mensajes.building();
+            Mensajes.mostrarMenuEstadisticasRanking();
             switch(Utils.opcionesUser(0,4)){
                 case 1:
 
