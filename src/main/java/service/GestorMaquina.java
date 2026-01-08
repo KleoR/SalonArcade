@@ -26,12 +26,49 @@ public class GestorMaquina {
     }
 
     public void guardarMaquina(MaquinaArcade nuevo) {
-        numMaquinas = Utils.guardar(nuevo, maquinas, numMaquinas, "Límite de máquinas alcanzado.");
+        if (numMaquinas >= maquinas.length) System.out.println("Límite de máquinas alcanzado.");
+        else {
+            maquinas[numMaquinas] = nuevo;
+            numMaquinas++;
+        }
     }
 
     public void mostrarMaquinas() {
         Mensajes.encabezadoListaMaquinas();
         Utils.mostrarArray(maquinas, numMaquinas);
+    }
+
+    public void mostrarMaquinasActivas() {
+        boolean hayAlguna = false;
+
+        Mensajes.encabezadoListaMaquinas();
+        for (int i = 0; i < numMaquinas; i++) {
+            if (maquinas[i] != null && maquinas[i].isEstadoMaquina()) {
+                System.out.println("[ " + (i + 1) + " ] " + maquinas[i]);
+                hayAlguna = true;
+            }
+        }
+
+        if (!hayAlguna) System.out.println("No hay máquinas activas.");
+    }
+
+    public void maquinaMasUsada() {
+        int max = -1, pos = -1;
+
+        for (int i = 0; i < numMaquinas; i++) {
+            if (maquinas[i] != null) {
+                if (maquinas[i].getContadorPartidas() > max) {
+                    max = maquinas[i].getContadorPartidas();
+                    pos = i;
+                }
+            }
+        }
+
+        if (pos == -1) System.out.println("No hay máquinas registradas.");
+        else {
+            System.out.println("Máquina más usada:");
+            System.out.println(maquinas[pos]);
+        }
     }
 
     public MaquinaArcade elegirMaquina() {
@@ -42,7 +79,7 @@ public class GestorMaquina {
 
     public void registrarMaquina() {
         String nameMaquina = Utils.nombrar(Mensajes.nuevoNombreMaquina(), 3,10);
-        MaquinaArcade nuevo = new MaquinaArcade(nameMaquina, elegirGenero(), elegirPrecio(),true, 0);
+        MaquinaArcade nuevo = new MaquinaArcade(nameMaquina, elegirGenero(), elegirPrecio());
         guardarMaquina(nuevo);
 
         Mensajes.nuevoNombreCierre();

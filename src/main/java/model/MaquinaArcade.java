@@ -3,15 +3,18 @@ package model;
 import utils.Utils;
 
 public class MaquinaArcade {
-    private final MaquinaArcade[] maquinas = new MaquinaArcade[50];
     private String nameMaquina;
+    private String generoJuego;
     private int pricePartida;
     private int contadorPartidas;
     private boolean estadoMaquina;
-    private String[][] rankingJugadores;
 
-    public MaquinaArcade(String nameMaquina, String generoJuego, int pricePartida, boolean estadoMaquina, int contadorPartidas) {
+    private final int[] topPuntos = new int[3];
+    private final String[] topJugador = new String[3];
+
+    public MaquinaArcade(String nameMaquina, String generoJuego, int pricePartida) {
         this.nameMaquina = nameMaquina;
+        this.generoJuego = generoJuego;
         this.pricePartida = pricePartida;
         this.estadoMaquina = true;
         this.contadorPartidas = 0;
@@ -19,51 +22,51 @@ public class MaquinaArcade {
 
 //------------------------------------------ GETTER/SETTER --------------------------------------------
 
-    public MaquinaArcade[] getMaquinas() {
-        return maquinas;
-    }
-
     public String getNameMaquina() {
         return nameMaquina;
     }
 
-    public void setNameMaquina(String nameMaquina) {
-        this.nameMaquina = nameMaquina;
+    public String getGeneroJuego() {
+        return generoJuego;
     }
 
     public int getPricePartida() {
         return pricePartida;
     }
 
-    public void setPricePartida(int pricePartida) {
-        this.pricePartida = pricePartida;
-    }
-
     public int getContadorPartidas() {
         return contadorPartidas;
-    }
-
-    public void setContadorPartidas(int contadorPartidas) {
-        this.contadorPartidas = contadorPartidas;
     }
 
     public boolean isEstadoMaquina() {
         return estadoMaquina;
     }
 
-    public void setEstadoMaquina(boolean estadoMaquina) {
-        this.estadoMaquina = estadoMaquina;
-    }
 
-    public String[][] getRankingJugadores() {
-        return rankingJugadores;
-    }
-
-    public void setRankingJugadores(String[][] rankingJugadores) {
-        this.rankingJugadores = rankingJugadores;
-    }
 
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
+
+    /**
+     */
+    public int jugarNuevaPartida(String idJugador){ //Todo
+        int puntuacion = -1;
+
+        if (!isEstadoMaquina()) System.out.println("La máquina está inactiva. No se puede jugar.");
+        else if(hasGanado()){
+            System.out.println("♛ HAS GANADO ♛");
+            puntuacion = genPuntuacion();
+            modRanking(idJugador, puntuacion);
+            conMaquinaPartida();
+            estadoMaquina();
+        } else System.out.println("☠ HAS PERDIDO ☠");
+
+        return puntuacion;
+    }
+
+    public boolean hasGanado(){
+        return Utils.generarNumeroAleatorio(0, 1) == 1;
+    }
+
     /**
      * Sobreescribe el estado de la máquina por el aportado por el atributo
      *
@@ -81,30 +84,7 @@ public class MaquinaArcade {
         if (this.contadorPartidas > 0 && this.contadorPartidas % 100 == 0) {
             modEstadoMaquina(false);
             System.out.println("La máquina se ha desactivado para mantenimiento.");
-        } else if (this.contadorPartidas % 100 != 0)  modEstadoMaquina(true);
-    }
-
-    /**
-     * Se debe generar una puntuación aleatoria entre 0 y 9999, e incrementar el
-     * contador de partidas.
-
-     * ○
-     * ○ Si la puntuación ha superado el top 3, registarla y actualizar correctamente el
-     * ranking (insertando en el lugar correspondiente y desplazando valores).
-     * ○ El método debe devolver la puntuación de la partida.
-     */
-    public int jugarNuevaPartida(){ //Todo
-        int puntuacion = 0;
-
-        if (!estadoMaquina){
-            System.out.println("La máquina está inactiva. No se puede jugar.");
-            // Devolver al menu de elección de maquina
-        } else{
-            puntuacion = genPuntuacion();
-            conMaquinaPartida();
-            estadoMaquina();
-        }
-        return puntuacion;
+        } else  modEstadoMaquina(true);
     }
 
     /**
@@ -115,11 +95,35 @@ public class MaquinaArcade {
     }
 
     /**
-     * e incrementar el contador de partidas.
+     * algo e incrementar el contador de partidas.
      * @return int - contador actualizado
      */
     public int conMaquinaPartida(){
         return ++this.contadorPartidas;
+    }
+
+    private void modRanking(String idJugador, int puntuacion) {
+
+        for (int i = 0; i < 3; i++) {
+            if (puntuacion > topPuntos[i]) {
+                for (int j = 2; j > i; j--) {
+                    topPuntos[j] = topPuntos[j - 1];
+                    topJugador[j] = topJugador[j - 1];
+                }
+
+                topPuntos[i] = puntuacion;
+                topJugador[i] = idJugador;
+                break;
+            }
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return nameMaquina + " | " + generoJuego + " | Precio: " + pricePartida
+                + " | Partidas: " + contadorPartidas
+                + " | Estado: " + (estadoMaquina ? "Activa" : "Inactiva");
     }
 }
 

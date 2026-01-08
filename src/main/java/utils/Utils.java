@@ -10,10 +10,11 @@ public class Utils {
 
     /**
      * Pide un número por consola y comprueba si es un entero y devuelve un int
-     * @param mjs  mensaje que se mostrará al pedir el número
+     *
+     * @param mjs mensaje que se mostrará al pedir el número
      * @return int - numero validado
      */
-    public static int leerEnter(String mjs){//ToDo - Uncheck
+    public static int leerEnter(String mjs) {//ToDo - Uncheck
         boolean esValido;
         int numero = 0;
 
@@ -35,20 +36,22 @@ public class Utils {
 
     /**
      * Se encarga de decir si un valor se encuentra dentro de un rango y devuelve un booleano
+     *
      * @param valor numero a comprobar
-     * @param min valor mínimo permitido (incluido)
-     * @param max valor maximo permitido (incluido)
+     * @param min   valor mínimo permitido (incluido)
+     * @param max   valor maximo permitido (incluido)
      * @return boolean - validacion del rango
      */
-    public static boolean comprobarRango(int valor, int min, int max){//ToDo - Uncheck
-         return valor >= min && valor <= max;
+    public static boolean comprobarRango(int valor, int min, int max) {//ToDo - Uncheck
+        return valor >= min && valor <= max;
     }
 
     /**
      * Solícita un número entero al usuario mediante leerEntero()
      * y comprueba si se encuentra dentro de un rango médiente comprobarRango()
      * Repetira la peticion hasta que se introduzca un número dentro del rango.
-     *      Nota: esto se podria meter en comprobar rango si devolviese un int en vez de un boolean
+     * Nota: esto se podria meter en comprobar rango si devolviese un int en vez de un boolean
+     *
      * @param mjs mensaje que se mostrará al pedir el número
      * @param min valor mínimo permitido (incluido)
      * @param max valor maximo permitido (incluido)
@@ -71,33 +74,36 @@ public class Utils {
 
     /**
      * Genera numeros enteros automaticos dentro de un rango dado.
-     *  nota: <a href="https://es.stackoverflow.com/questions/5390/como-generar-n%C3%BAmeros-aleatorios-dentro-de-un-rango-de-valores">...</a>
+     * nota: <a href="https://es.stackoverflow.com/questions/5390/como-generar-n%C3%BAmeros-aleatorios-dentro-de-un-rango-de-valores">...</a>
+     *
      * @param min valor mínimo permitido (incluido)
      * @param max valor maximo permitido (incluido)
      * @return int - numero aleatorio
      */
-    public static int generarNumeroAleatorio(int min, int max){//ToDo - Uncheck
+    public static int generarNumeroAleatorio(int min, int max) {//ToDo - Uncheck
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
     /**
      * Pide por pantalla un número al usuario y verifica que este dentro del rango asignado.
+     *
      * @param min numero de la primera opcion
      * @param max numero de la ultima opcion
      * @return int - numero dentro del rango
      */
-    public static int opcionesUser(int min, int max){
+    public static int opcionesUser(int min, int max) {
         return Utils.leerEnterEnRango("Seleccione una opción: ", min, max);
     }
 
     /**
      * Metodo que comprueba que la palabra introducida por el usuario cumpla los requisitos de longitud y no se encuentre vacio.
+     *
      * @param mjs mensaje para el usuario
      * @param min minimo de letras
      * @param max maximo de letras
      * @return String - nombre validado
      */
-    public static String nombrar(String mjs, int min, int max){
+    public static String nombrar(String mjs, int min, int max) {
         boolean esValido;
         String name;
         sc.nextLine();
@@ -108,7 +114,8 @@ public class Utils {
             esValido = true;
 
             if (name.isEmpty()) System.out.println("Error: el nombre no puede estar vacío.");
-            else if (name.length() < min || name.length() > max) System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");
+            else if (name.length() < min || name.length() > max)
+                System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");
             else esValido = false;
 
         } while (esValido);
@@ -122,14 +129,6 @@ public class Utils {
         }
     }
 
-    public static int guardar(Object nuevo, Object[] datos, int n, String msgLimite) {
-        if (n >= datos.length) System.out.println(msgLimite);
-        else {
-            datos[n] = nuevo;
-            n++;
-        }
-        return n;
-    }
 
 }
 

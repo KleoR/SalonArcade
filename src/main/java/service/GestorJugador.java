@@ -30,14 +30,18 @@ public class GestorJugador {
      */
     public void RegisterJugador(){ //ToDo
         String nameJugador = Utils.nombrar(Mensajes.nuevoNombreJugador(), 3,10);
-        Jugador nuevo = new Jugador(nameJugador, generaIDJugador(), 0, 1);
+        Jugador nuevo = new Jugador(nameJugador, generaIDJugador(), 0, 0);
         guardarJugador(nuevo);
 
         Mensajes.nuevoNombreCierre();
     }
 
     public void guardarJugador(Jugador nuevo) {
-        numJugadores = Utils.guardar(nuevo, jugadores, numJugadores, "Límite de máquinas alcanzado.");
+        if (numJugadores >= jugadores.length) System.out.println("Límite de jugadores alcanzado.");
+        else {
+            jugadores[numJugadores] = nuevo;
+            numJugadores++;
+        }
     }
 
     public void mostrarJugadores() {
@@ -50,6 +54,25 @@ public class GestorJugador {
         mostrarJugadores();
         int index = Utils.leerEnterEnRango("Elige un jugador: ",1, numJugadores);
         return jugadores[index - 1];
+    }
+
+    public void jugadorMasActivo() {
+        int max = -1, pos = -1;
+
+        for (int i = 0; i < numJugadores; i++) {
+            if (jugadores[i] != null) {
+                if (jugadores[i].getNumPartidasJugadas() > max) {
+                    max = jugadores[i].getNumPartidasJugadas();
+                    pos = i;
+                }
+            }
+        }
+
+        if (pos == -1) System.out.println("No hay jugadores registrados.");
+        else {
+            System.out.println("Jugador más activo:");
+            System.out.println(jugadores[pos]);
+        }
     }
 
     //-------------------------------------------- ID ----------------------------------------------

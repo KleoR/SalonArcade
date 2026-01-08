@@ -4,7 +4,8 @@ import utils.Mensajes;
 import utils.Utils;
 
 public class Menus {
-    static GestorJugador gestor = new GestorJugador();
+    static SalaRecreativa salaRecreativa = new SalaRecreativa();
+
     public static void MenuPrincipal(){
         boolean salir = true;
 
@@ -38,12 +39,10 @@ public class Menus {
             Mensajes.mostrarMenuJugar();
             switch(Utils.opcionesUser(0,2)){
                 case 1:
-                    //
+                    salaRecreativa.Juego();
                     break;
                 case 2:
-                    //                    SalaRecreativa.comprobarJugadores();
-                    //                    SalaRecreativa.recargaCreditosJugador();
-                    //                    gestor.mostrarJugadores();
+                    salaRecreativa.recargaCreditosJugador();
                     break;
                 case 0:
                     salir = false;
@@ -60,20 +59,20 @@ public class Menus {
             Mensajes.mostrarMenuGestionJugador();
             switch(Utils.opcionesUser(0,5)){
                 case 1:
-                    gestor.RegisterJugador();
+                    salaRecreativa.RegisterJugador();
                     break;
                 case 2:
-                    //Gestión de jugadores
-                    Mensajes.menuEditarJugador();
+                    menuEditarJugador();
                     break;
                 case 3:
-                    SalaRecreativa.comprobarJugadores();
+                    salaRecreativa.comprobarJugadores();
                     break;
                 case 4:
-                    gestor.mostrarJugadores();
+                    salaRecreativa.mostrarJugadores();
                     break;
                 case 5:
-
+                    // TODO - Jugador más activo
+                    salaRecreativa.jugadorMasActivo();
                     break;
                 case 0:
                     salir = false;
@@ -88,24 +87,28 @@ public class Menus {
 
         do{
             Mensajes.mostrarMenuGestionMaquina();
-            switch(Utils.opcionesUser(0,5)){
+            switch(Utils.opcionesUser(0,6)){
                 case 1:
-                    //Registrar maquina
+                    salaRecreativa.registrarMaquina();
                     break;
                 case 2:
-                    // Editar maquina
+                    menuEditarMaquina();
                     break;
                 case 3:
                     // Escoger maquina
+                    salaRecreativa.elegirMaquina();
                     break;
                 case 4:
                     // Listar máquinas
+                    salaRecreativa.mostrarMaquinas();
                     break;
                 case 5:
                     // Listar máquinas activas
+                    salaRecreativa.mostrarMaquinasActivas();
                     break;
                 case 6:
                     // Maquina más usada
+                    salaRecreativa.maquinaMasUsada();
                     break;
                 case 0:
                     salir = false;
@@ -115,7 +118,7 @@ public class Menus {
         }while (salir);
     }
 
-    public static void MenuEstadisticasRanking(){
+    public static void MenuEstadisticasRanking(){  // TODO
         boolean salir = true;
 
         do{
@@ -134,8 +137,53 @@ public class Menus {
 
                     break;
                 case 0:
-                    System.out.println("█  Has Salido  █");
                     salir = false;
+                    break;
+            }
+
+        }while (salir);
+    }
+
+    public static void menuEditarJugador(){
+        boolean salir = true;
+
+        do{
+            Mensajes.menuEditarJugador();
+            switch(Utils.opcionesUser(0,2)){
+                case 1:
+                    // TODO -  Cambiar nombre
+                    break;
+                case 2:
+                    salaRecreativa.recargaCreditosJugador();
+                    break;
+                case 0:
+                    salir = false;
+                    break;
+            }
+
+        }while (salir);
+    }
+
+    public static void menuEditarMaquina(){
+        boolean salir = true;
+
+        do{
+            Mensajes.menuEditarMaquina();
+            switch(Utils.opcionesUser(0,3)){
+                case 1:
+                    // TODO - Cambiar nombre
+                    break;
+                case 2:
+                    //  TODO - Dar de baja una máquina
+                    salaRecreativa.bajaMaquina();
+                    break;
+                case 3:
+                    //  TODO - Mantenimiento / Reactivar máquina
+                    salaRecreativa.reactivarMaquina();
+                    break;
+                case 0:
+                    salir = false;
+                    break;
             }
 
         }while (salir);
