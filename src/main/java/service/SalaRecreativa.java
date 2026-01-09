@@ -129,6 +129,20 @@ public class SalaRecreativa {
         }
     }
 
+    public void mostrarRankingPuntuacion() {
+        if (MaquinaLista()) maquinaActual.mostrarMaquinasRanking();
+        else System.out.println("No hay máquina seleccionada.");
+    }
+
+    public void modificarNombreMaquina(){
+        comprobarMaquinas();
+
+        String nuevoNombre = Utils.nombrar("Introduce el nuevo nombre: ", 3, 10);
+        maquinaActual.setNameMaquina(nuevoNombre);
+
+        System.out.println("Nombre modificado correctamente.");
+    }
+
     //------------------------------- CRÉDITOS -------------------------------------------
 
     public void recargaCreditosJugador(){
