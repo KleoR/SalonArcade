@@ -15,7 +15,7 @@ public class SalaRecreativa {
 
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
     public void Juego(){
-        boolean ok = JuegoListo();
+        boolean ok = juegoListo();
         int puntuacion;
 
         if (ok) {
@@ -38,7 +38,7 @@ public class SalaRecreativa {
     }
 
 
-    public boolean JuegoListo(){
+    public boolean juegoListo(){
         return (jugadorListo() && MaquinaLista());
     }
 
@@ -77,10 +77,8 @@ public class SalaRecreativa {
 
     public void modificarNombreJugador(){
         comprobarJugadores();
-
         String nuevoNombre = Utils.nombrar("Introduce el nuevo nombre: ", 3, 10);
-        jugadorActual.nameJugador(nuevoNombre);
-
+        jugadorActual.setNameJugador(nuevoNombre);
         System.out.println("Nombre modificado correctamente.");
     }
 

@@ -105,20 +105,20 @@ public class Utils {
      * @return String - nombre validado
      */
     public static String nombrar(String mjs, int min, int max) {
-        boolean esValido;
+        boolean noEsValido;
         String name;
 
         do {
             System.out.print(mjs);
             name = sc.nextLine().trim();
-            esValido = true;
-
+            noEsValido = true;
+            
             if (name.isEmpty()) System.out.println("Error: el nombre no puede estar vacío.");
             else if (name.length() < min || name.length() > max)
                 System.out.println("Error: el nombre no puede tener menos de " + min + " ni mas de " + max + " letras.");
-            else esValido = false;
+            else noEsValido = false;
 
-        } while (esValido);
+        } while (noEsValido);
 
         return name;
     }

@@ -28,7 +28,7 @@ public class Jugador {
         return numPartidasJugadas;
     }
 
-    public void nameJugador(String nuevoNombre) {
+    public void setNameJugador(String nuevoNombre) {
         this.nameJugador = nuevoNombre;
     }
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
