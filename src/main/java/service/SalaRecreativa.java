@@ -30,7 +30,9 @@ public class SalaRecreativa {
             if (!ok) System.out.println("No tienes créditos suficiente para esta maquina.");
             else {
                 puntuacion = maquinaActual.jugarNuevaPartida(jugadorActual.getIdJugador());
-                if (puntuacion >= 0) jugadorActual.contPartidas();
+                if (puntuacion >= 0) {
+                    jugadorActual.contPartidas();  // ← Solo si jugó exitosamente
+                }
             }
 
             System.out.println(jugadorActual);
