@@ -24,95 +24,77 @@ public class Mensajes {
                 """);
     }
 
-    public static void mostrarMenuJugar() {
-        System.out.println("""
-                \n======================  J U G A D O R  ======================
+    public static void mostrarMenu( String titulo, String l1) {
+        System.out.printf("""
+                \n%-61s
                 
-                   1. Jugar una partida
-                   2. Recargar créditos
+                %-61s
                 
                 -------------------------------------------------------------
-                   0. Volver al menú principal
+                   0. Volver
                 =============================================================
+                """, titulo, l1);
+    }
+
+    public static void mostrarMenuJugar() {
+        mostrarMenu("======================  J U G A D O R  ======================",
+                """   
+                        1. Jugar una partida
+                        2. Recargar créditos
                 """);
     }
 
     public static void mostrarMenuGestionJugador() {
-        System.out.println("""
-                \n=========  G E S T I Ó N   D E   J U G A D O R E S  =========
-                
-                   1. Registrar nuevo jugador
-                   2. Editar jugador
-                   3. Escoger jugador
-                   4. Listar jugadores
-                   5. Jugador más activo
-                
-                -------------------------------------------------------------
-                   0. Volver al menú principal
-                =============================================================
-                """);
+        mostrarMenu("=========  G E S T I Ó N   D E   J U G A D O R E S  =========",
+                """
+                           1. Registrar nuevo jugador
+                           2. Editar jugador
+                           3. Escoger jugador
+                           4. Listar jugadores
+                           5. Jugador más activo
+                        """);
     }
 
     public static void mostrarMenuGestionMaquina() {
-        System.out.println("""
-                \n==========  G E S T I Ó N   D E   M A Q U I N A S  ==========
-                
-                   1. Registrar nueva maquina
-                   2. Editar maquina
-                   3. Escoger maquina
-                   4. Listar maquinas
-                   5. Listar máquinas activas
-                   6. Maquina más usada
-                
-                -------------------------------------------------------------
-                   0. Volver al menú principal
-                =============================================================
-                """);
+        mostrarMenu("==========  G E S T I Ó N   D E   M A Q U I N A S  ==========",
+                """
+                           1. Registrar nueva maquina
+                           2. Editar maquina
+                           3. Escoger maquina
+                           4. Listar maquinas
+                           5. Listar máquinas activas
+                           6. Maquina más usada
+                        """);
     }
 
     public static void mostrarMenuEstadisticasRanking() {
-        System.out.println("""
-                \n==========  G E S T I Ó N   D E   M A Q U I N A S  ==========
-                
-                   1. Listar máquinas activas
-                   2. Mostrar jugador más activo
-                   3. Mostrar máquina más usada
-                   4. Ranking de una máquina
-                   5. Maquina más usada
-                
-                -------------------------------------------------------------
-                   0. Volver al menú principal
-                =============================================================
-                """);
+        mostrarMenu("==========  G E S T I Ó N   D E   M A Q U I N A S  ==========",
+                """
+                           1. Listar máquinas activas
+                           2. Mostrar jugador más activo
+                           3. Mostrar máquina más usada
+                           4. Ranking de una máquina
+                           5. Maquina más usada
+                        """);
     }
 
     //------------------------------------------- EDITAR -------------------------------------------
 
     public static void menuEditarJugador() {
-        System.out.println("""
-                \n================  E D I T A R  J U G A D O R  ===============
-                
-                   1. Cambiar Nombre
-                   2. Recargar créditos
-                
-                -------------------------------------------------------------
-                   0. Volver al menú principal
-                =============================================================
-                """);
+        mostrarMenu("================  E D I T A R  J U G A D O R  ===============",
+                """
+                           1. Cambiar Nombre
+                           2. Recargar créditos
+                        """);
     }
 
     public static void menuEditarMaquina() {
-        System.out.println("""
-                \n================  E D I T A R  M A Q U I N A  ===============
-                
-                   1. Cambiar Nombre
-                   2. Dar de baja una máquina
-                   3. Mantenimiento / Reactivar máquina
-                
-                -------------------------------------------------------------
-                   0. Volver al menú principal
-                =============================================================
-                """);
+        mostrarMenu("================  E D I T A R  M A Q U I N A  ===============",
+                """
+                           1. Cambiar Nombre
+                           2. Dar de baja una máquina
+                           3. Mantenimiento / Reactivar máquina
+                        """);
     }
 
     //------------------------------------- CAJA DE INSERCIÓN -------------------------------------
@@ -151,44 +133,57 @@ public class Mensajes {
                       >\s""");
     }
 
-    public static void annadirCreditoCierre() {
+    public static void elegirCredito() {
+        System.out.println("""
+                \n══════════════════════ ELEGIR CRÉDITO ══════════════════════""");
+    }
+
+    public static void elegirGenero() {
+        System.out.println("""
+                \n═══════════════════════ ELEGIR GENERO ═══════════════════════""");
+    }
+
+    public static void creditoCierre() {
         System.out.println("""
                 ═════════════════════════════════════════════════════════════""");
     }
 
+    public static void ranking(){
+        System.out.print("""
+                       \n┌─────────────────────────────────────────────┐
+                       │          R A N K I N G   T O P  3           │
+                       ├─────────────────────────────────────────────┤
+                """);
+    }
+
+    public static void rankingCierre(){
+        System.out.print("""
+                       └─────────────────────────────────────────────┘
+                """);
+    }
+
     //------------------------------------------ ALERTAS ------------------------------------------
+    public static void alerta(String t1, String  l1, String  l2) {
+        System.out.printf("""
+            \n=============================================================
+            %61s
+            -------------------------------------------------------------
+            %61s
+            %61s
+            =============================================================
+            """, t1, l1, l2);
+    }
 
     public static void noHayCredito() {
-        System.out.println("""
-                \n=============================================================
-                             ⚠  NO TIENES CRÉDITOS SUFICIENTES  ⚠
-                -------------------------------------------------------------
-                      Este jugador no dispone de créditos suficientes.
-                                  Por favor, añada créditos.
-                =============================================================
-                """);
+        alerta("             ⚠  NO TIENES CRÉDITOS SUFICIENTES  ⚠", "       Este jugador no dispone de créditos suficientes.", "                  Por favor, añade créditos.");
     }
 
     public static void noHayJugadores() {
-        System.out.println("""
-                \n=============================================================
-                                 ⚠  NO HAY JUGADORES REGISTRADOS  ⚠
-                -------------------------------------------------------------
-                            Aún no existe ningún jugador en el sistema.
-                                    Por favor, crea uno.
-                =============================================================
-                """);
+        alerta("              ⚠  NO HAY JUGADORES REGISTRADOS  ⚠", "         Aún no existe ningún jugador en el sistema.", "                     Por favor, crea uno.");
     }
 
     public static void noHayMaquina() {
-        System.out.println("""
-                \n=============================================================
-                              ⚠  NO HAY MAQUINAS REGISTRADOS  ⚠
-                -------------------------------------------------------------
-                        Aún no existe ningúna maquina en el sistema.
-                                    Por favor, crea una.
-                =============================================================
-                """);
+        alerta("              ⚠  NO HAY MAQUINAS REGISTRADOS  ⚠", "         Aún no existe ningúna maquina en el sistema.", "                     Por favor, crea uno.");
     }
 
     public static void building() {
@@ -198,5 +193,44 @@ public class Mensajes {
                 =============================================================
                 """);
     }
+
+    //------------------------------------------ GAMEBOY ------------------------------------------
+
+    public static void gameboy(String l1, String l2, String l3, String l4, String l5) {
+        System.out.printf("""
+        \n
+                   ╔═════════════════════════════════════╗
+                   ║   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁   ║
+                   ║  │   ┌───────────────────────┐   │  ║
+                   ║  │   │%-23.23s│   │  ║
+                   ║  │   │%-23.23s│   │  ║
+                   ║  │   │%-23.23s│   │  ║
+                   ║  │   │%-23.23s│   │  ║
+                   ║  │   │%-23.23s│   /  ║
+                   ║  │   └───────────────────────┘  /   ║
+                   ║  │▁▁▁ MAQUINA ARCADE ▁▁▁▁▁▁▁▁▁▁/    ║
+                   ║                    ▁        ▁       ║
+                   ║                  ( 1 )    ( 2 )     ║
+                   ║                    ▔        ▔       ║
+                   ╚═════════════════════════════════════╝
+        """, l1, l2, l3, l4, l5);
+    }
+
+    public static void caraCruz() {
+        gameboy("       CARA CRUZ", "", "   ► 1. CARA", "   ► 2. CRUZ", "");
+    }
+
+    public static void parImpar() {
+        gameboy("       PAR o IMPAR", "", "   ► 1. PAR", "   ► 2. IMPAR", "");
+    }
+
+    public static void ganado() {
+        gameboy("    *      ×      *", "       ×        *", "  ×  ! HAS GANADO ¡ *", "       *        ×", "    ×      *      ×");
+    }
+
+    public static void perdido() {
+        gameboy("    ↓      ℓ      ↓", "       ℓ        ↓", "  ℓ  ! HAS PERDIDO ¡ ↓", "       ↓        ℓ", "    ℓ      ↓      ℓ");
+        }
+
 }
 
