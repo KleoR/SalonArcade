@@ -21,17 +21,22 @@ public class Jugador {
     public String getIdJugador() {
         return idJugador;
     }
+
     public int getCreditosJugador() { return creditosJugador; }
+
     public int getNumPartidasJugadas() {
         return numPartidasJugadas;
     }
 
-    //------------------------------------------ FUNCIONALIDADES --------------------------------------------
+    public void nameJugador(String nuevoNombre) {
+        this.nameJugador = nuevoNombre;
+    }
+//------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
     public void recargaCreditos() {
         int cantidad = Utils.leerEnterEnRango(Mensajes.annadirCredito(),1,9999);
         this.creditosJugador += cantidad;
-        Mensajes.annadirCreditoCierre();
+        Mensajes.creditoCierre();
     }
 
     /**
@@ -56,7 +61,6 @@ public class Jugador {
         return creditosJugador <= 0;
     }
 
-
     /**
      * Incrementar el número de partidas jugadas
      * @return int - numero de partidas jugadas
@@ -69,10 +73,12 @@ public class Jugador {
     public String toString() {
         return """
                 %s
-                   • Créditos: %d | Partidas: %d | ID: %s
+                   • Créditos: %d | Partidas: %5d | ID: %-4s
                 -------------------------------------------------------------
                 """.formatted(this.nameJugador, this.creditosJugador, numPartidasJugadas, this.idJugador);
     }
+
+
 }
 
 

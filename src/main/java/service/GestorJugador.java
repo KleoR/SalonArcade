@@ -22,11 +22,17 @@ public class GestorJugador {
         return numJugadores <= 0;
     }
 
+    public Jugador elegirJugador(){
+        mostrarJugadores();
+        int index = Utils.leerEnterEnRango("Elige un jugador: ",1, numJugadores);
+        return jugadores[index - 1];
+    }
+
     /**
      * Registra un nuevo jugador y se solicita un nombre mediante Utils.nombrar().
      * Se genera un ID único para el jugador mediante generaIDJugador().
      * Se crea la instancia Jugador y se almacena en guardarJugador().
-     *  Nota: Este método no devuelve el jugador creado pero podría si se quire.
+     *  Nota: Este méto_do no devuelve el jugador creado, pero podría si se quire.
      */
     public void registerJugador(){
         String nameJugador = Utils.nombrar(Mensajes.nuevoNombreJugador(), 3,10);
@@ -47,13 +53,6 @@ public class GestorJugador {
     public void mostrarJugadores() {
         Mensajes.encabezadoListaJugadores();
         Utils.mostrarArray(jugadores, numJugadores);
-    }
-
-
-    public Jugador elegirJugador(){
-        mostrarJugadores();
-        int index = Utils.leerEnterEnRango("Elige un jugador: ",1, numJugadores);
-        return jugadores[index - 1];
     }
 
     public void jugadorMasActivo() {

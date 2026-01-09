@@ -37,6 +37,7 @@ public class SalaRecreativa {
         }
     }
 
+
     public boolean JuegoListo(){
         return (jugadorListo() && MaquinaLista());
     }
@@ -78,7 +79,7 @@ public class SalaRecreativa {
         comprobarJugadores();
 
         String nuevoNombre = Utils.nombrar("Introduce el nuevo nombre: ", 3, 10);
-        jugadorActual.setNombreJugador(nuevoNombre);
+        jugadorActual.nameJugador(nuevoNombre);
 
         System.out.println("Nombre modificado correctamente.");
     }
@@ -87,7 +88,7 @@ public class SalaRecreativa {
 
     public boolean MaquinaLista(){
         comprobarMaquinas();
-        return  maquinaActual == null ;
+        return  maquinaActual != null ;
     }
 
     public void comprobarMaquinas(){

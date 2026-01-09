@@ -165,14 +165,20 @@ public class Menus {
 
         do{
             Mensajes.menuEditarMaquina();
-            switch(Utils.opcionesUser(0,3)){
+            switch(Utils.opcionesUser(0,5)){
                 case 1:
                     salaRecreativa.modificarNombreMaquina();
                     break;
                 case 2:
-                    salaRecreativa.bajaMaquina();
+                    // Cambiar Género
                     break;
                 case 3:
+                    // Cambiar Precio
+                    break;
+                case 4:
+                    salaRecreativa.bajaMaquina();
+                    break;
+                case 5:
                     salaRecreativa.reactivarMaquina();
                     break;
                 case 0:

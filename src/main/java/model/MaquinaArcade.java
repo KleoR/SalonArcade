@@ -1,5 +1,8 @@
 package model;
 
+import service.Games.CaraCruz;
+import service.Games.SumaPares;
+import utils.Mensajes;
 import utils.Utils;
 
 public class MaquinaArcade {
@@ -22,14 +25,6 @@ public class MaquinaArcade {
 
 //------------------------------------------ GETTER/SETTER --------------------------------------------
 
-    public String getNameMaquina() {
-        return nameMaquina;
-    }
-
-    public String getGeneroJuego() {
-        return generoJuego;
-    }
-
     public int getPricePartida() {
         return pricePartida;
     }
@@ -42,25 +37,54 @@ public class MaquinaArcade {
         return estadoMaquina;
     }
 
-
-
+    public void setNameMaquina(String nameMaquina) {
+        this.nameMaquina = nameMaquina;
+    }
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
 
     /**
      */
-    public int jugarNuevaPartida(String idJugador){ //Todo
+    public int jugarNuevaPartida(String idJugador){
         int puntuacion = -1;
 
-        if (!isEstadoMaquina()) System.out.println("La máquina está inactiva. No se puede jugar.");
-        else if(hasGanado()){
-            System.out.println("♛ HAS GANADO ♛");
-            puntuacion = genPuntuacion();
-            modRanking(idJugador, puntuacion);
-            conMaquinaPartida();
-            estadoMaquina();
-        } else System.out.println("☠ HAS PERDIDO ☠");
+        if (!isEstadoMaquina()) {
+            System.out.println("La máquina está inactiva. No se puede jugar.");
+            return puntuacion;
+        }
+
+
+        switch (this.nameMaquina) {
+            case "CaraCruz":
+                puntuacion = CaraCruz.juegoCaraCruz();
+                break;
+            case "SumaPares":
+                puntuacion = SumaPares.jugarSumaPares();
+                break;
+
+            default:
+                // Lógica actual: aleatoria
+                if (!hasGanado()) {
+                    Mensajes.perdido();
+                    puntuacion = 0; // Si pierde, puntuación 0
+                } else {
+                    Mensajes.ganado();
+                    puntuacion = genPuntuacion();
+                }
+        }
+
+        if (!isEstadoMaquina()) {
+            System.out.println("La máquina está inactiva. No se puede jugar.");
+            return puntuacion;
+        }
+
+        conMaquinaPartida();
+        estadoMaquina();
 
         return puntuacion;
+    }
+
+    public int maquinaActiva(){
+
     }
 
     public boolean hasGanado(){
@@ -77,11 +101,11 @@ public class MaquinaArcade {
     }
 
     /**
-     * Si el contador llega a un múltiplo de 100 (100, 200, 300, 1000, 1500…), la
+     * Si el contador llega a un múltiplo de 10 (10, 20, 30, 100, 150…), la
      * máquina se desactiva sola para mantenimiento.
      */
     public void estadoMaquina(){//Todo
-        if (this.contadorPartidas > 0 && this.contadorPartidas % 100 == 0) {
+        if (this.contadorPartidas > 0 && this.contadorPartidas % 10 == 0) {
             modEstadoMaquina(false);
             System.out.println("La máquina se ha desactivado para mantenimiento.");
         } else  modEstadoMaquina(true);
@@ -118,12 +142,29 @@ public class MaquinaArcade {
         }
     }
 
+    public void mostrarMaquinasRanking() {
+        boolean hayAlguna = false;
+
+        Mensajes.ranking();
+        for (int i = 0; i < 3; i++) {
+            if (topJugador[i] == null) System.out.printf("       │   %dº  %-10s ─────────────────  [%6d] │\n", i + 1, "---", 0);
+            else {
+                System.out.printf("       │   %dº  %-10s ─────────────────  [%6d] │\n", i + 1, topJugador[i], topPuntos[i]);
+                hayAlguna = true;
+            }
+        }
+        Mensajes.rankingCierre();
+
+        if (!hayAlguna) System.out.println("No hay puntuaciones registradas.");
+    }
 
     @Override
     public String toString() {
-        return nameMaquina + " | " + generoJuego + " | Precio: " + pricePartida
-                + " | Partidas: " + contadorPartidas
-                + " | Estado: " + (estadoMaquina ? "Activa" : "Inactiva");
+        return """
+                %-38s  • %-13s
+                                    Precio: %2d | Partidas: %2d | Estado: %b
+                -------------------------------------------------------------
+                """.formatted(this.nameMaquina, this.generoJuego, this.pricePartida, this.contadorPartidas, (estadoMaquina ? "Activa" : "Inactiva"));
     }
 }
 

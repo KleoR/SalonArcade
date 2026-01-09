@@ -33,6 +33,7 @@ public class Mensajes {
                 -------------------------------------------------------------
                    0. Volver
                 =============================================================
+                
                 """, titulo, l1);
     }
 
@@ -49,7 +50,7 @@ public class Mensajes {
                 """
                            1. Registrar nuevo jugador
                            2. Editar jugador
-                           3. Escoger jugador
+                           3. Buscar un jugador
                            4. Listar jugadores
                            5. Jugador más activo
                         """);
@@ -60,21 +61,19 @@ public class Mensajes {
                 """
                            1. Registrar nueva maquina
                            2. Editar maquina
-                           3. Escoger maquina
-                           4. Listar maquinas
-                           5. Listar máquinas activas
-                           6. Maquina más usada
+                           3. Listar maquinas
+                           4. Listar máquinas activas
+                           5. Maquina más usada
+                           6. Top 3 puntuaciones
                         """);
     }
 
     public static void mostrarMenuEstadisticasRanking() {
-        mostrarMenu("==========  G E S T I Ó N   D E   M A Q U I N A S  ==========",
+        mostrarMenu("======================  R A N K I N G  ======================",
                 """
-                           1. Listar máquinas activas
-                           2. Mostrar jugador más activo
-                           3. Mostrar máquina más usada
-                           4. Ranking de una máquina
-                           5. Maquina más usada
+                           1. Jugador más activo
+                           2. Maquina más usada
+                           3. Top 3 puntuaciones
                         """);
     }
 
@@ -92,8 +91,10 @@ public class Mensajes {
         mostrarMenu("================  E D I T A R  M A Q U I N A  ===============",
                 """
                            1. Cambiar Nombre
-                           2. Dar de baja una máquina
-                           3. Mantenimiento / Reactivar máquina
+                           2. Cambiar Genero
+                           3. Cambiar Precio
+                           4. Dar de baja una máquina
+                           5. Mantenimiento / Reactivar máquina
                         """);
     }
 
@@ -166,11 +167,12 @@ public class Mensajes {
     public static void alerta(String t1, String  l1, String  l2) {
         System.out.printf("""
             \n=============================================================
-            %61s
+            %-61s
             -------------------------------------------------------------
-            %61s
-            %61s
+            %-61s
+            %-61s
             =============================================================
+            
             """, t1, l1, l2);
     }
 
