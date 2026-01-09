@@ -170,10 +170,10 @@ public class Menus {
                     salaRecreativa.modificarNombreMaquina();
                     break;
                 case 2:
-                    // Cambiar Género
+                    salaRecreativa.modificarGeneroMaquina();
                     break;
                 case 3:
-                    // Cambiar Precio
+                    salaRecreativa.modificarPrecioMaquina();
                     break;
                 case 4:
                     salaRecreativa.bajaMaquina();

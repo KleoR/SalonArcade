@@ -127,6 +127,26 @@ public class SalaRecreativa {
         System.out.println("Nombre modificado correctamente.");
     }
 
+    public void modificarGeneroMaquina() {
+        comprobarMaquinas();
+        if (maquinaActual != null) {
+            System.out.println("Género actual: " + maquinaActual.getGeneroJuego());
+            String nuevoGenero = gestorMaquina.elegirGenero();
+            maquinaActual.setGeneroJuego(nuevoGenero);
+            System.out.println("Género modificado correctamente a: " + nuevoGenero);
+        }
+    }
+
+    public void modificarPrecioMaquina() {
+        comprobarMaquinas();
+        if (maquinaActual != null) {
+            System.out.println("Precio actual: " + maquinaActual.getPricePartida() + " créditos");
+            int nuevoPrecio = gestorMaquina.elegirPrecio();
+            maquinaActual.setPricePartida(nuevoPrecio);
+            System.out.println("Precio modificado correctamente a: " + nuevoPrecio + " créditos");
+        }
+    }
+
     //------------------------------- CRÉDITOS -------------------------------------------
 
     public void recargaCreditosJugador(){

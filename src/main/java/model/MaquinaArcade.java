@@ -25,6 +25,10 @@ public class MaquinaArcade {
 
 //------------------------------------------ GETTER/SETTER --------------------------------------------
 
+    public String getGeneroJuego() {
+    return generoJuego;
+}
+
     public int getPricePartida() {
         return pricePartida;
     }
@@ -40,6 +44,16 @@ public class MaquinaArcade {
     public void setNameMaquina(String nameMaquina) {
         this.nameMaquina = nameMaquina;
     }
+
+    public void setGeneroJuego(String generoJuego) {
+        this.generoJuego = generoJuego;
+    }
+
+    public void setPricePartida(int pricePartida) {
+        this.pricePartida = pricePartida;
+    }
+
+
 
     //------------------------------------------ JUEGO --------------------------------------------
 
@@ -108,11 +122,10 @@ public class MaquinaArcade {
     }
 
     /**
-     * algo e incrementar el contador de partidas.
-     * @return int - contador actualizado
+     * Incrementar el contador de partidas.
      */
-    public int conMaquinaPartida(){
-        return ++this.contadorPartidas;
+    private void conMaquinaPartida(){
+        this.contadorPartidas++;
     }
 
     //------------------------------------------ ESTADO DE LA MÁQUINA --------------------------------------------

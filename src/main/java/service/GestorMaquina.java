@@ -71,14 +71,14 @@ public class GestorMaquina {
         return maquinas[index - 1];
     }
 
-    private String elegirGenero() {
+    String elegirGenero() {
         Mensajes.elegirGenero();
         Utils.mostrarArray(GENEROS, GENEROS.length);
         int opcion = Utils.leerEnterEnRango("Elige género: ", 1, GENEROS.length);
         return GENEROS[opcion - 1];
     }
 
-    private int elegirPrecio() {
+    int elegirPrecio() {
         Mensajes.elegirCredito();
 
         for (int i = 0; i < PRECIOS.length; i++) {
