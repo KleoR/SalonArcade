@@ -28,7 +28,7 @@ public class GestorJugador {
      * Se crea la instancia Jugador y se almacena en guardarJugador().
      *  Nota: Este método no devuelve el jugador creado pero podría si se quire.
      */
-    public void RegisterJugador(){ //ToDo
+    public void registerJugador(){
         String nameJugador = Utils.nombrar(Mensajes.nuevoNombreJugador(), 3,10);
         Jugador nuevo = new Jugador(nameJugador, generaIDJugador(), 0, 0);
         guardarJugador(nuevo);
@@ -78,7 +78,7 @@ public class GestorJugador {
     //-------------------------------------------- ID ----------------------------------------------
 
     private boolean existeId(String id) {
-        return buscarPorId(id) != null;
+        return buscarPorID(id) != null;
     }
 
     public String generaIDJugador() {
@@ -89,7 +89,7 @@ public class GestorJugador {
         return id;
     }
 
-    public Jugador buscarPorId(String id) {
+    public Jugador buscarPorID(String id) {
         Jugador encontrado = null;
         for (int i = 0; i < numJugadores; i++) {
             if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) {
@@ -97,6 +97,7 @@ public class GestorJugador {
                 break;
             }
         }
+
         return encontrado;
     }
 }
