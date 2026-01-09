@@ -92,7 +92,10 @@ public class GestorJugador {
     public Jugador buscarPorId(String id) {
         Jugador encontrado = null;
         for (int i = 0; i < numJugadores; i++) {
-            if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) encontrado = jugadores[i];
+            if (jugadores[i] != null && jugadores[i].getIdJugador().equals(id)) {
+                encontrado = jugadores[i];
+                break;
+            }
         }
         return encontrado;
     }
