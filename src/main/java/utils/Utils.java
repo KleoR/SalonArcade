@@ -14,7 +14,7 @@ public class Utils {
      * @param mjs mensaje que se mostrará al pedir el número
      * @return int - numero validado
      */
-    public static int leerEnter(String mjs) {//ToDo - Uncheck
+    public static int leerEnter(String mjs) {
         boolean esValido;
         int numero = 0;
 
@@ -24,6 +24,7 @@ public class Utils {
 
             try {
                 numero = sc.nextInt();
+                sc.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Error: No es un numero entero.");
                 esValido = false;
@@ -42,7 +43,7 @@ public class Utils {
      * @param max   valor maximo permitido (incluido)
      * @return boolean - validacion del rango
      */
-    public static boolean comprobarRango(int valor, int min, int max) {//ToDo - Uncheck
+    public static boolean comprobarRango(int valor, int min, int max) {
         return valor >= min && valor <= max;
     }
 
@@ -80,7 +81,7 @@ public class Utils {
      * @param max valor maximo permitido (incluido)
      * @return int - numero aleatorio
      */
-    public static int generarNumeroAleatorio(int min, int max) {//ToDo - Uncheck
+    public static int generarNumeroAleatorio(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
@@ -106,7 +107,6 @@ public class Utils {
     public static String nombrar(String mjs, int min, int max) {
         boolean esValido;
         String name;
-        sc.nextLine();
 
         do {
             System.out.print(mjs);
