@@ -40,82 +40,71 @@ public class MaquinaArcade {
     public void setNameMaquina(String nameMaquina) {
         this.nameMaquina = nameMaquina;
     }
-//------------------------------------------ FUNCIONALIDADES --------------------------------------------
+
+    //------------------------------------------ JUEGO --------------------------------------------
 
     /**
+     * Jugar una nueva partida en la máquina.
+     * @param idJugador Identificador del jugador.
+     * @return Puntuación obtenida, o -1 si la máquina está inactiva.
      */
-    public int jugarNuevaPartida(String idJugador){
-        int puntuacion = -1;
-
+    public int jugarNuevaPartida(String idJugador) {
         if (!isEstadoMaquina()) {
-            System.out.println("La máquina está inactiva. No se puede jugar.");
-            return puntuacion;
+            return manejarMaquinaInactiva();
         }
 
-
-        switch (this.nameMaquina) {
-            case "CaraCruz":
-                puntuacion = CaraCruz.juegoCaraCruz();
-                break;
-            case "SumaPares":
-                puntuacion = SumaPares.jugarSumaPares();
-                break;
-
-            default:
-                // Lógica actual: aleatoria
-                if (!hasGanado()) {
-                    Mensajes.perdido();
-                    puntuacion = 0; // Si pierde, puntuación 0
-                } else {
-                    Mensajes.ganado();
-                    puntuacion = genPuntuacion();
-                }
-        }
-
-        if (!isEstadoMaquina()) {
-            System.out.println("La máquina está inactiva. No se puede jugar.");
-            return puntuacion;
-        }
-
-        conMaquinaPartida();
-        estadoMaquina();
+        int puntuacion = ejecutarJuego();
+        actualizarEstadoPartida();
+        actualizarRanking(idJugador, puntuacion);
 
         return puntuacion;
     }
 
-    public int maquinaActiva(){
-
+    private int manejarMaquinaInactiva() {
+        System.out.println("La máquina está inactiva. No se puede jugar.");
+        return -1;
     }
 
+    private int ejecutarJuego() {
+        return switch (this.nameMaquina) {
+            case "CaraCruz" -> CaraCruz.juegoCaraCruz();
+            case "SumaPares" -> SumaPares.jugarSumaPares();
+            default -> ejecutarJuegoAleatorio();
+        };
+    }
+
+    private int ejecutarJuegoAleatorio() {
+        if (!hasGanado()) {
+            Mensajes.perdido();
+            return 0;
+        } else {
+            Mensajes.ganado();
+            return genPuntuacion();
+        }
+    }
+
+    /**
+     * Actualiza el estado de la máquina después de una partida.
+     * Incrementa el contador de partidas y verifica si la máquina debe desactivarse.
+     */
+    private void actualizarEstadoPartida() {
+        conMaquinaPartida();
+        estadoMaquina();
+    }
+
+    /**
+     * Determina si el jugador ha ganado (para juegos aleatorios).
+     * @return true si ha ganado, false en caso contrario.
+     */
     public boolean hasGanado(){
         return Utils.generarNumeroAleatorio(0, 1) == 1;
-    }
-
-    /**
-     * Sobreescribe el estado de la máquina por el aportado por el atributo
-     *
-     * @param nuevoEstado nuevo estado de la máquina
-     */
-    public void modEstadoMaquina(boolean nuevoEstado){// Todo
-        this.estadoMaquina = nuevoEstado;
-    }
-
-    /**
-     * Si el contador llega a un múltiplo de 10 (10, 20, 30, 100, 150…), la
-     * máquina se desactiva sola para mantenimiento.
-     */
-    public void estadoMaquina(){//Todo
-        if (this.contadorPartidas > 0 && this.contadorPartidas % 10 == 0) {
-            modEstadoMaquina(false);
-            System.out.println("La máquina se ha desactivado para mantenimiento.");
-        } else  modEstadoMaquina(true);
     }
 
     /**
      * Se debe generar una puntuación aleatoria entre 0 y 9999
      */
     public int genPuntuacion(){
-       return Utils.generarNumeroAleatorio(0,9999);
+        return Utils.generarNumeroAleatorio(0,9999);
     }
 
     /**
@@ -126,8 +115,36 @@ public class MaquinaArcade {
         return ++this.contadorPartidas;
     }
 
-    private void modRanking(String idJugador, int puntuacion) {
+    //------------------------------------------ ESTADO DE LA MÁQUINA --------------------------------------------
 
+    /**
+     * Sobreescribe el estado de la máquina por el aportado por el atributo
+     *
+     * @param nuevoEstado nuevo estado de la máquina
+     */
+    public void modEstadoMaquina(boolean nuevoEstado) {
+        this.estadoMaquina = nuevoEstado;
+    }
+
+    /**
+     * Verifica si la máquina debe desactivarse por mantenimiento.
+     * Si el contador de partidas es múltiplo de 10, la máquina se desactiva.
+     */
+    public void estadoMaquina() {
+        if (this.contadorPartidas > 0 && this.contadorPartidas % 10 == 0) {
+            modEstadoMaquina(false);
+            System.out.println("La máquina se ha desactivado para mantenimiento.");
+        }
+    }
+
+    // ------------------------------------------ RANKING --------------------------------------------
+
+    /**
+     * Actualiza el ranking con la nueva puntuación del jugador.
+     * @param idJugador Identificador del jugador.
+     * @param puntuacion Puntuación obtenida.
+     */
+    private void actualizarRanking(String idJugador, int puntuacion) {
         for (int i = 0; i < 3; i++) {
             if (puntuacion > topPuntos[i]) {
                 for (int j = 2; j > i; j--) {
@@ -142,6 +159,9 @@ public class MaquinaArcade {
         }
     }
 
+    /**
+     * Muestra el ranking de la máquina.
+     */
     public void mostrarMaquinasRanking() {
         boolean hayAlguna = false;
 
