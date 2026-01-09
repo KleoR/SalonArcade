@@ -1,5 +1,6 @@
-package service;
+package controller;
 
+import service.SalaRecreativa;
 import utils.Mensajes;
 import utils.Utils;
 
@@ -59,19 +60,18 @@ public class Menus {
             Mensajes.mostrarMenuGestionJugador();
             switch(Utils.opcionesUser(0,5)){
                 case 1:
-                    salaRecreativa.RegisterJugador();
+                    salaRecreativa.registerJugador();
                     break;
                 case 2:
                     menuEditarJugador();
                     break;
                 case 3:
-                    salaRecreativa.comprobarJugadores();
+                    salaRecreativa.buscarJugador();
                     break;
                 case 4:
                     salaRecreativa.mostrarJugadores();
                     break;
                 case 5:
-                    // TODO - Jugador más activo
                     salaRecreativa.jugadorMasActivo();
                     break;
                 case 0:
@@ -95,20 +95,19 @@ public class Menus {
                     menuEditarMaquina();
                     break;
                 case 3:
-                    // Escoger maquina
-                    salaRecreativa.elegirMaquina();
-                    break;
-                case 4:
                     // Listar máquinas
                     salaRecreativa.mostrarMaquinas();
                     break;
-                case 5:
+                case 4:
                     // Listar máquinas activas
                     salaRecreativa.mostrarMaquinasActivas();
                     break;
-                case 6:
+                case 5:
                     // Maquina más usada
                     salaRecreativa.maquinaMasUsada();
+                    break;
+                case 6:
+                    salaRecreativa.mostrarRankingPuntuacion();
                     break;
                 case 0:
                     salir = false;
@@ -118,23 +117,20 @@ public class Menus {
         }while (salir);
     }
 
-    public static void MenuEstadisticasRanking(){  // TODO
+    public static void MenuEstadisticasRanking(){
         boolean salir = true;
 
         do{
             Mensajes.mostrarMenuEstadisticasRanking();
-            switch(Utils.opcionesUser(0,4)){
+            switch(Utils.opcionesUser(0,3)){
                 case 1:
-
+                    salaRecreativa.jugadorMasActivo();
                     break;
                 case 2:
-
+                    salaRecreativa.maquinaMasUsada();
                     break;
                 case 3:
-
-                    break;
-                case 4:
-
+                    salaRecreativa.mostrarRankingPuntuacion();
                     break;
                 case 0:
                     salir = false;
@@ -151,7 +147,7 @@ public class Menus {
             Mensajes.menuEditarJugador();
             switch(Utils.opcionesUser(0,2)){
                 case 1:
-                    // TODO -  Cambiar nombre
+                    salaRecreativa.modificarNombreJugador();
                     break;
                 case 2:
                     salaRecreativa.recargaCreditosJugador();
@@ -171,14 +167,12 @@ public class Menus {
             Mensajes.menuEditarMaquina();
             switch(Utils.opcionesUser(0,3)){
                 case 1:
-                    // TODO - Cambiar nombre
+                    salaRecreativa.modificarNombreMaquina();
                     break;
                 case 2:
-                    //  TODO - Dar de baja una máquina
                     salaRecreativa.bajaMaquina();
                     break;
                 case 3:
-                    //  TODO - Mantenimiento / Reactivar máquina
                     salaRecreativa.reactivarMaquina();
                     break;
                 case 0:
