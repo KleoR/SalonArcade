@@ -8,7 +8,7 @@ public class Menus {
     static SalaRecreativa salaRecreativa = new SalaRecreativa();
 
     public static void MenuPrincipal(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.mostrarMenuPrincipal();
@@ -27,14 +27,14 @@ public class Menus {
                     break;
                 case 0:
                     System.out.println("█  Has Salido  █");
-                    salir = false;
+                    salir = true;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void MenuJugar(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.mostrarMenuJugar();
@@ -46,15 +46,15 @@ public class Menus {
                     salaRecreativa.recargaCreditosJugador();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void MenuGestionDeJugadores(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.mostrarMenuGestionJugador();
@@ -75,15 +75,15 @@ public class Menus {
                     salaRecreativa.jugadorMasActivo();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void MenuGestionDeMaquinas(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.mostrarMenuGestionMaquina();
@@ -110,15 +110,15 @@ public class Menus {
                     salaRecreativa.mostrarRankingPuntuacion();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void MenuEstadisticasRanking(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.mostrarMenuEstadisticasRanking();
@@ -133,15 +133,15 @@ public class Menus {
                     salaRecreativa.mostrarRankingPuntuacion();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void menuEditarJugador(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.menuEditarJugador();
@@ -153,15 +153,15 @@ public class Menus {
                     salaRecreativa.recargaCreditosJugador();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
     public static void menuEditarMaquina(){
-        boolean salir = true;
+           boolean salir = false;
 
         do{
             Mensajes.menuEditarMaquina();
@@ -182,11 +182,11 @@ public class Menus {
                     salaRecreativa.reactivarMaquina();
                     break;
                 case 0:
-                    salir = false;
+                    salir = true;
                     break;
             }
 
-        }while (salir);
+        }while (!salir);
     }
 
 }
