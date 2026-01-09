@@ -61,6 +61,28 @@ public class SalaRecreativa {
         }
     }
 
+    public void buscarJugador(){
+        comprobarJugadores();
+
+        String id = Utils.nombrar("Introduce el ID del jugador: ",4,4);
+        Jugador encontrado = gestorJugador.buscarPorID(id);
+
+        if (encontrado == null) System.out.println("No existe ningún jugador con ese ID.");
+        else {
+            System.out.println("Jugador encontrado:");
+            System.out.println(encontrado);
+        }
+    }
+
+    public void modificarNombreJugador(){
+        comprobarJugadores();
+
+        String nuevoNombre = Utils.nombrar("Introduce el nuevo nombre: ", 3, 10);
+        jugadorActual.setNombreJugador(nuevoNombre);
+
+        System.out.println("Nombre modificado correctamente.");
+    }
+
     //------------------------------- MAQUINA -------------------------------------------
 
     public boolean MaquinaLista(){
