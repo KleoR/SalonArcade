@@ -3,6 +3,7 @@ package service;
 import model.Jugador;
 import model.MaquinaArcade;
 import utils.Mensajes;
+import utils.Utils;
 
 
 public class SalaRecreativa {
@@ -44,10 +45,9 @@ public class SalaRecreativa {
 
     public boolean jugadorListo(){
         boolean listo = true;
-
         comprobarJugadores();
-
         jugadorActual = gestorJugador.elegirJugador();
+
         if (jugadorActual == null) listo = false;
         if (listo) noHayCreditos(jugadorActual);
 
@@ -57,7 +57,7 @@ public class SalaRecreativa {
     public void comprobarJugadores(){
         while (gestorJugador.noHayJugadores()) {
             Mensajes.noHayJugadores();
-            gestorJugador.RegisterJugador();
+            gestorJugador.registerJugador();
         }
     }
 
@@ -86,14 +86,8 @@ public class SalaRecreativa {
     //------------------------------- MAQUINA -------------------------------------------
 
     public boolean MaquinaLista(){
-        boolean listo = true;
-
         comprobarMaquinas();
-
-        maquinaActual = gestorMaquina.elegirMaquina();
-        if (maquinaActual == null) listo = false;
-
-        return listo;
+        return  maquinaActual == null ;
     }
 
     public void comprobarMaquinas(){
@@ -101,29 +95,18 @@ public class SalaRecreativa {
             Mensajes.noHayMaquina();
             gestorMaquina.registrarMaquina();
         }
+        maquinaActual = gestorMaquina.elegirMaquina();
     }
 
     public void bajaMaquina() {
-        boolean ok = true;
-
-        comprobarMaquinas();
-        maquinaActual = gestorMaquina.elegirMaquina();
-        if (maquinaActual == null) ok = false;
-
-        if (ok) {
+        if (MaquinaLista()) {
             maquinaActual.modEstadoMaquina(false);
             System.out.println("Máquina dada de baja (inactiva).");
         }
     }
 
     public void reactivarMaquina() {
-        boolean ok = true;
-
-        comprobarMaquinas();
-        maquinaActual = gestorMaquina.elegirMaquina();
-        if (maquinaActual == null) ok = false;
-
-        if (ok) {
+        if (MaquinaLista()) {
             maquinaActual.modEstadoMaquina(true);
             System.out.println("Máquina reactivada.");
         }
@@ -160,8 +143,8 @@ public class SalaRecreativa {
 
     //------------------------------- GESTOR -------------------------------------------
 
-    public void RegisterJugador() {
-        gestorJugador.RegisterJugador();
+    public void registerJugador() {
+        gestorJugador.registerJugador();
     }
 
     public void mostrarJugadores() {
@@ -176,10 +159,6 @@ public class SalaRecreativa {
         gestorMaquina.mostrarMaquinas();
     }
 
-    public void elegirMaquina() {
-        maquinaActual = gestorMaquina.elegirMaquina();
-    }
-
     public void mostrarMaquinasActivas() {
         gestorMaquina.mostrarMaquinasActivas();
     }
@@ -191,4 +170,5 @@ public class SalaRecreativa {
     public void jugadorMasActivo() {
         gestorJugador.jugadorMasActivo();
     }
+
 }
