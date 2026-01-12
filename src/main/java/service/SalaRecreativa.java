@@ -14,31 +14,58 @@ public class SalaRecreativa {
     private MaquinaArcade maquinaActual;
 
 //------------------------------------------ FUNCIONALIDADES --------------------------------------------
-    public void Juego(){
-        boolean ok = juegoListo();
-        int puntuacion;
 
-        if (ok) {
+    public void Juego() {
+        if (!juegoListo()) return;
 
-            while (jugadorActual.getCreditosJugador() < maquinaActual.getPricePartida()) {
-                Mensajes.noHayCredito();
-                jugadorActual.recargaCreditos();
+        boolean jugarOtra = true;
+
+        while (jugarOtra) {
+            if (!gestionarCreditos()) return;
+            if (!jugarPartida()) return;
+
+            if (!maquinaActual.isEstadoMaquina()) {
+                System.out.println("La máquina está inactiva. No se puede jugar más.");
+                break;
             }
 
-            ok = jugadorActual.gastarCreditos(maquinaActual.getPricePartida());
-
-            if (!ok) System.out.println("No tienes créditos suficiente para esta maquina.");
-            else {
-                puntuacion = maquinaActual.jugarNuevaPartida(jugadorActual.getIdJugador());
-                if (puntuacion >= 0) {
-                    jugadorActual.contPartidas();  // ← Solo si jugó exitosamente
-                }
-            }
-
-            System.out.println(jugadorActual);
+            jugarOtra = preguntarOtraVez();
         }
     }
 
+    private boolean gestionarCreditos() {
+        while (jugadorActual.getCreditosJugador() < maquinaActual.getPricePartida()) {
+            Mensajes.noHayCredito();
+            System.out.println("¿Deseas recargar créditos? 1. Sí 2. No, volver al menú.");
+            int opcion = Utils.opcionesUser(1, 2);
+
+            if (opcion == 1) jugadorActual.recargaCreditos();
+            else return false;
+        }
+
+        return true;
+    }
+
+    private boolean jugarPartida() {
+        boolean ok = jugadorActual.gastarCreditos(maquinaActual.getPricePartida());
+
+        if (!ok) {
+            System.out.println("No tienes créditos suficiente para esta máquina.");
+            return false;
+        }
+
+        int puntuacion = maquinaActual.jugarNuevaPartida(jugadorActual.getIdJugador());
+        if (puntuacion >= 0) jugadorActual.contPartidas();
+
+        System.out.println(jugadorActual);
+        return true;
+    }
+
+    private boolean preguntarOtraVez() {
+        System.out.println("¿Quieres jugar otra vez en esta máquina? 1. Sí, 2. No");
+        int opcion = Utils.opcionesUser(1, 2);
+        return (opcion == 1);
+    }
 
     public boolean juegoListo(){
         return (jugadorListo() && MaquinaLista());

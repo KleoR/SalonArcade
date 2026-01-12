@@ -63,10 +63,9 @@ public class Jugador {
 
     /**
      * Incrementar el número de partidas jugadas
-     * @return int - numero de partidas jugadas
      */
-    public int contPartidas() {
-        return ++numPartidasJugadas;
+    public void contPartidas() {
+        ++numPartidasJugadas;
     }
 
     @Override

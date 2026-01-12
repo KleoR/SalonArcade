@@ -1,8 +1,4 @@
 package utils;
-
-/**
- * Clase de mensajes contantes
- */
 public class Mensajes {
 
     //------------------------------------------- MENUS -------------------------------------------
@@ -200,8 +196,7 @@ public class Mensajes {
 
     public static void gameboy(String l1, String l2, String l3, String l4, String l5) {
         System.out.printf("""
-        \n
-                   ╔═════════════════════════════════════╗
+        \n           ╔═════════════════════════════════════╗
                    ║   ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁   ║
                    ║  │   ┌───────────────────────┐   │  ║
                    ║  │   │%-23.23s│   │  ║
@@ -215,6 +210,7 @@ public class Mensajes {
                    ║                  ( 1 )    ( 2 )     ║
                    ║                    ▔        ▔       ║
                    ╚═════════════════════════════════════╝
+
         """, l1, l2, l3, l4, l5);
     }
 
@@ -233,6 +229,5 @@ public class Mensajes {
     public static void perdido() {
         gameboy("    ↓      ℓ      ↓", "       ℓ        ↓", "  ℓ  ! HAS PERDIDO ¡ ↓", "       ↓        ℓ", "    ℓ      ↓      ℓ");
         }
-
 }
 

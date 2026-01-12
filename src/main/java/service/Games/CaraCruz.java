@@ -7,9 +7,14 @@ public class CaraCruz {
 
     public static int juegoCaraCruz() {
         Mensajes.caraCruz();
-        int min = 0, max = 1;
-        int eleccion = Utils.opcionesUser(min, max);
-        boolean gana = Utils.generarNumeroAleatorio(min, max) == eleccion;
+        int eleccion = Utils.opcionesUser(1, 2);
+        int resultado = Utils.generarNumeroAleatorio(1, 2);
+
+        boolean gana = (eleccion == resultado);
+        System.out.println("Resultado: " + (resultado == 1 ? "CARA" : "CRUZ"));
+
+        if (gana) Mensajes.ganado();
+        else Mensajes.perdido();
 
         return gana ? 100 : 0;
     }
